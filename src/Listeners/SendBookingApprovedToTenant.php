@@ -1,10 +1,10 @@
 <?php
 
-namespace RealEstateDoc\Asset\Listener;
+namespace Shura\Asset\Listener;
 
 use Illuminate\Support\Facades\Mail;
-use RealEstateDoc\Asset\Events\BookingApproved;
-use RealEstateDoc\Asset\Mails\BookingRequestApprovedEmailToTenant;
+use Shura\Asset\Events\BookingApproved;
+use Shura\Asset\Mails\BookingRequestApprovedEmailToTenant;
 
 class SendBookingApprovedToTenant
 {

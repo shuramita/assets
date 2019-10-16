@@ -5,10 +5,10 @@
 export const environment = {
     production: false,
     // local_api_key:'KbGnzKMPROGJz3WWgmRruO6Y3RuXduxHF8scNuL3r1QTPEPdOblIQOk0trIV',
-    // api:'http://demo-realestatedoc.co'
+    // api:'http://demo-shura.co'
 
     localApiKey: 'ZBFzwsylZLyHVRoUYdrSUJcGFyXY16MXaYxdt4Q4vJBykYT4rVBrJOcxNCOZ',
-    api: 'http://demo.realestatedoc.co',
+    api: 'http://demo.shura.co',
     apiPrefix: '/api/',
     deployUrl: '/',
     loginURL: '/login',

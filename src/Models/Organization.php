@@ -1,15 +1,15 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use RealEstateDoc\Asset\Facades\Auth;
-use RealEstateDoc\Asset\Helpers\Helper as AssetHelper;
+use Shura\Asset\Facades\Auth;
+use Shura\Asset\Helpers\Helper as AssetHelper;
 use Illuminate\Database\Eloquent\Builder;
-use RealEstateDoc\Asset\Helpers\Helper;
+use Shura\Asset\Helpers\Helper;
 
 class Organization extends Model
 {
@@ -81,23 +81,23 @@ class Organization extends Model
     }
 
 //    public function terms(){
-//        return $this->hasMany('RealEstateDoc\Asset\Models\Term');
+//        return $this->hasMany('Shura\Asset\Models\Term');
 //    }
     public function getIsWorkingOrganizationAttribute()
     {
         return Helper::org() && $this->id == Helper::org()->id;
     }
     public function taxes(){
-        return $this->hasMany('RealEstateDoc\Asset\Models\Tax');
+        return $this->hasMany('Shura\Asset\Models\Tax');
     }
 //    public function template(){
-//        return $this->belongsTo('RealEstateDoc\Asset\Models\Template','Asset_template_id');
+//        return $this->belongsTo('Shura\Asset\Models\Template','Asset_template_id');
 //    }
     public function getDefaultTaxAttribute(){
         return $this->taxes()->where('order','=', '1')->first();
     }
     public function logo() {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Media','logo');
+        return $this->belongsTo('Shura\Asset\Models\Media','logo');
     }
     public function scopeOwner($query)
     {
@@ -105,13 +105,13 @@ class Organization extends Model
     }
 
     public function buildings(){
-        return $this->hasMany('RealEstateDoc\Asset\Models\Building');
+        return $this->hasMany('Shura\Asset\Models\Building');
     }
     public function prices(){
-        return $this->hasMany('RealEstateDoc\Asset\Models\Price');
+        return $this->hasMany('Shura\Asset\Models\Price');
     }
     public function fields(){
-        return $this->hasMany('RealEstateDoc\Asset\Models\Field');
+        return $this->hasMany('Shura\Asset\Models\Field');
     }
     
     protected static function boot()

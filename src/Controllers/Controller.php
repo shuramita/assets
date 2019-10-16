@@ -1,6 +1,6 @@
 <?php
 
-namespace RealEstateDoc\Asset\Controllers;
+namespace Shura\Asset\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

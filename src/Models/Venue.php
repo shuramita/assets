@@ -1,12 +1,12 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use RealEstateDoc\Asset\Helpers\Helper;
-use RealEstateDoc\Asset\Models\Trails\VenueScope;
+use Shura\Asset\Helpers\Helper;
+use Shura\Asset\Models\Trails\VenueScope;
 
 class Venue extends Asset
 {
@@ -16,21 +16,21 @@ class Venue extends Asset
     protected $hidden = [];
 
     public function organization() {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Organization','organization_id');
+        return $this->belongsTo('Shura\Asset\Models\Organization','organization_id');
     }
     
     public function photos() {
-        return $this->morphToMany('RealEstateDoc\Asset\Models\Media', 'mediable','ass_mediables');
+        return $this->morphToMany('Shura\Asset\Models\Media', 'mediable','ass_mediables');
     }
 
     public function types() {
-        return $this->belongsToMany('RealEstateDoc\Asset\Models\VenueType', 'ven_venue_static_data', 'venue_id','static_id');
+        return $this->belongsToMany('Shura\Asset\Models\VenueType', 'ven_venue_static_data', 'venue_id','static_id');
     }
     public function events() {
-        return $this->belongsToMany('RealEstateDoc\Asset\Models\EventType', 'ven_venue_static_data', 'venue_id','static_id');
+        return $this->belongsToMany('Shura\Asset\Models\EventType', 'ven_venue_static_data', 'venue_id','static_id');
     }
     public function background() {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Media','background_photo');
+        return $this->belongsTo('Shura\Asset\Models\Media','background_photo');
     }
     
     protected static function boot()

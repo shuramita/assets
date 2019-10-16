@@ -1,6 +1,6 @@
 <?php
 
-namespace RealEstateDoc\Asset;
+namespace Shura\Asset;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,15 +13,15 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'RealEstateDoc\Asset\Events\NewAssetBooking' => [
-            'RealEstateDoc\Asset\Listener\SendEmailToTenant',
-            'RealEstateDoc\Asset\Listener\SendEmailToLandlord',
+        'Shura\Asset\Events\NewAssetBooking' => [
+            'Shura\Asset\Listener\SendEmailToTenant',
+            'Shura\Asset\Listener\SendEmailToLandlord',
         ],
-        'RealEstateDoc\Asset\Events\BookingApproved' => [
-            'RealEstateDoc\Asset\Listener\SendBookingApprovedToTenant',
+        'Shura\Asset\Events\BookingApproved' => [
+            'Shura\Asset\Listener\SendBookingApprovedToTenant',
         ],
-        'RealEstateDoc\Asset\Events\BookingRejected' => [
-            'RealEstateDoc\Asset\Listener\SendBookingRejectedToTenant',
+        'Shura\Asset\Events\BookingRejected' => [
+            'Shura\Asset\Listener\SendBookingRejectedToTenant',
         ],
     ];
 

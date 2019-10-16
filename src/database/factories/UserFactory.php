@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 */
 
 
-$factory->define(\RealEstateDoc\Asset\Models\User::class, function (Faker $faker) use ($factory){
+$factory->define(\Shura\Asset\Models\User::class, function (Faker $faker) use ($factory){
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,

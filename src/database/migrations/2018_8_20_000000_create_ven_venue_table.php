@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use RealEstateDoc\Asset\Helpers\Helper;
+use Shura\Asset\Helpers\Helper;
 
 class CreateVenVenueTable extends Migration
 {

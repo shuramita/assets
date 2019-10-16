@@ -1,8 +1,8 @@
 {
-    "name": "realestatedoc/asset",
+    "name": "shura/asset",
     "description": "Description",
     "type": "library",
-    "namespace":"RealEstateDoc",
+    "namespace": "Shura",
     "authors": [
         {
             "name": "Tam Nguyen",
@@ -15,15 +15,15 @@
             "src/database/factories"
         ],
         "psr-4": {
-            "RealEstateDoc\\Asset\\": "src/"
+            "Shura\\Asset\\": "src/"
         },
         "files": ["src/Helpers/Helper.php"]
     },
     "extra": {
         "laravel": {
             "providers": [
-                "RealEstateDoc\\Asset\\AssetServiceProvider",
-                "RealEstateDoc\\Asset\\EventServiceProvider"
+                "Shura\\Asset\\AssetServiceProvider",
+                "Shura\\Asset\\EventServiceProvider"
             ]
         }
     }

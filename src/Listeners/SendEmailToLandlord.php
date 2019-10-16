@@ -1,10 +1,10 @@
 <?php
 
-namespace RealEstateDoc\Asset\Listener;
+namespace Shura\Asset\Listener;
 
 use Illuminate\Support\Facades\Mail;
-use RealEstateDoc\Asset\Events\NewAssetBooking;
-use RealEstateDoc\Asset\Mails\NewBookingRequestEmailToLandlord;
+use Shura\Asset\Events\NewAssetBooking;
+use Shura\Asset\Mails\NewBookingRequestEmailToLandlord;
 
 class SendEmailToLandlord
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace RealEstateDoc\Asset\Controllers;
+namespace Shura\Asset\Controllers;
 
 
 trait AssetResponse

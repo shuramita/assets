@@ -1,10 +1,10 @@
 <?php
 
-namespace RealEstateDoc\Asset\Controllers\API;
+namespace Shura\Asset\Controllers\API;
 
 use Illuminate\Http\Request;
-use RealEstateDoc\Asset\Controllers\Controller;
-use RealEstateDoc\Asset\Models\Venue;
+use Shura\Asset\Controllers\Controller;
+use Shura\Asset\Models\Venue;
 use Illuminate\Validation\Rule;
 use Validator;
 class VenueController extends Controller

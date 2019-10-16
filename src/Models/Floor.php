@@ -1,11 +1,11 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use RealEstateDoc\Asset\Helpers\Helper;
+use Shura\Asset\Helpers\Helper;
 
 class Floor extends Model
 {
@@ -41,19 +41,19 @@ class Floor extends Model
     }
     public function assets()
     {
-        return $this->hasMany('RealEstateDoc\Asset\Models\Asset');
+        return $this->hasMany('Shura\Asset\Models\Asset');
     }
     public function building()
     {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Building');
+        return $this->belongsTo('Shura\Asset\Models\Building');
     }
     public function photo()
     {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Media','photo_id');
+        return $this->belongsTo('Shura\Asset\Models\Media','photo_id');
     }
     public function map()
     {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Media','map_id');
+        return $this->belongsTo('Shura\Asset\Models\Media','map_id');
     }
     public static function addNewFloor($data){
         $floor = new Floor();

@@ -6,7 +6,7 @@
  * Time: 9:19 AM
  */
 
-namespace RealEstateDoc\Asset\Helpers;
+namespace Shura\Asset\Helpers;
 
 
 use function GuzzleHttp\Psr7\str;

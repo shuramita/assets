@@ -1,9 +1,9 @@
 .background-header {
-    height: 640px; 
-    text-align: center; 
+    height: 640px;
+    text-align: center;
     display: grid;
     align-items: center;
-    background-image: url('http://demo.realestatedoc.co/upload/photos/1-2019/origin-1548403165-rectangle@2x.jpg');
+    background-image: url('http://demo.shura.co/upload/photos/1-2019/origin-1548403165-rectangle@2x.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: relative;
@@ -34,12 +34,12 @@
         }
         /deep/ .mat-form-field-appearance-legacy .mat-form-field-label{
             color: #ffffff;
-        } 
+        }
         /deep/ .mat-select-value{
             color: #ffffff;
             font-size: 20px;
         }
-        
+
         /deep/ .mat-form-field-appearance-legacy .mat-form-field-underline {
             display: none;
         }
@@ -48,7 +48,7 @@
             width: 28px;
         }
 
-        .input-qty {                 
+        .input-qty {
             /deep/ .mat-form-field-label {
                 text-align: center;
             }
@@ -68,7 +68,7 @@
             padding: 0 16px;
             position: relative;
         }
-        
+
         .border-right::after {
             content : "";
             position: absolute;
@@ -157,9 +157,9 @@
 /* -- quantity box -- */
 
 .quantity {
-    display: inline-block; 
+    display: inline-block;
 }
-   
+
    .quantity .input-text.qty {
     width: 50px;
     height: 20px;
@@ -168,23 +168,23 @@
     border: none;
     font-size: 20px;
    }
-   
+
    .quantity.buttons_added {
     text-align: center;
     position: relative;
     white-space: nowrap;
     vertical-align: top; }
-   
+
    .quantity.buttons_added input {
     display: inline-block;
     margin: 0;
     vertical-align: top;
     box-shadow: none;
    }
-   
+
    .quantity.buttons_added .minus,
    .quantity.buttons_added .plus {
-    
+
     height: 28px;
     width: 28px;
     background-color: transparent;
@@ -194,25 +194,25 @@
     cursor: pointer;
     font-size: 20px;
 }
-   
+
 //    .quantity.buttons_added .minus {
 //     border-right: 0; }
-   
+
 //    .quantity.buttons_added .plus {
 //     border-left: 0; }
-   
+
    .quantity.buttons_added .minus:hover,
    .quantity.buttons_added .plus:hover {
     background: #eeeeee; }
-   
+
    .quantity input::-webkit-outer-spin-button,
    .quantity input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     margin: 0; }
-    
+
     .quantity.buttons_added .minus:focus,
    .quantity.buttons_added .plus:focus {
-    outline: none; 
+    outline: none;
 }
-   
+

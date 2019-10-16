@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 */
 
 
-$factory->define(\RealEstateDoc\Asset\Models\Field::class, function (Faker $faker) use ($factory){
+$factory->define(\Shura\Asset\Models\Field::class, function (Faker $faker) use ($factory){
     $title = $faker->name;
     return [
         'key'=>$faker->uuid,

@@ -1,11 +1,11 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use RealEstateDoc\Asset\Helpers\Helper;
+use Shura\Asset\Helpers\Helper;
 
 class Price extends Model
 {

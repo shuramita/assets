@@ -1,6 +1,6 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -35,6 +35,6 @@ class VenueType extends Model
     }
 //    public function assets()
 //    {
-//        return $this->morphedByMany('RealEstateDoc\Asset\Models\Asset', 'static','ass_asset_static_data','static_id','asset_id');
+//        return $this->morphedByMany('Shura\Asset\Models\Asset', 'static','ass_asset_static_data','static_id','asset_id');
 //    }
 }

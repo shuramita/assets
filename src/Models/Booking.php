@@ -1,15 +1,15 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Builder;
-use RealEstateDoc\Asset\Events\BookingApproved;
-use RealEstateDoc\Asset\Events\BookingRejected;
-use RealEstateDoc\Asset\Helpers\Helper;
+use Shura\Asset\Events\BookingApproved;
+use Shura\Asset\Events\BookingRejected;
+use Shura\Asset\Helpers\Helper;
 
 class Booking extends Model
 {
@@ -23,13 +23,13 @@ class Booking extends Model
      */
 
     public function customer(){
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Customer','customer_id');
+        return $this->belongsTo('Shura\Asset\Models\Customer','customer_id');
     }
     public function asset(){
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Asset','asset_id');
+        return $this->belongsTo('Shura\Asset\Models\Asset','asset_id');
     }
     public function location(){
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Asset','asset_id');
+        return $this->belongsTo('Shura\Asset\Models\Asset','asset_id');
     }
     public function getInvoiceAttribute(){
         if(!empty($this->start_date) && !empty($this->end_date)) {

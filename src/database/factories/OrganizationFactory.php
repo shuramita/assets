@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 */
 
 
-$factory->define(\RealEstateDoc\Asset\Models\Organization::class, function (Faker $faker) use ($factory){
+$factory->define(\Shura\Asset\Models\Organization::class, function (Faker $faker) use ($factory){
     return [
         'name'=>$faker->company,
         'location'=>$faker->randomElement(['VNM','SGP']),

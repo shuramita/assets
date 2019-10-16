@@ -1,10 +1,10 @@
 <?php
-namespace RealEstateDoc\Asset\Database\Seeds;
+namespace Shura\Asset\Database\Seeds;
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use RealEstateDoc\Asset\Helpers\Helper;
+use Shura\Asset\Helpers\Helper;
 
 class AssetTypeSeeder extends Seeder
 {

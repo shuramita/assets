@@ -1,10 +1,10 @@
 <?php
 
-namespace RealEstateDoc\Asset\Controllers\API;
+namespace Shura\Asset\Controllers\API;
 
 use Illuminate\Http\Request;
-use RealEstateDoc\Asset\Controllers\Controller;
-use RealEstateDoc\Asset\Models\Floor as FloorModel;
+use Shura\Asset\Controllers\Controller;
+use Shura\Asset\Models\Floor as FloorModel;
 use Illuminate\Validation\Rule;
 use Validator;
 class Floor extends Controller

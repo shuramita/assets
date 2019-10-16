@@ -1,5 +1,5 @@
 <?php
-namespace RealEstateDoc\Asset;
+namespace Shura\Asset;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 //use Averspace\Admin\ViewComposers\Item;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
-use RealEstateDoc\Asset\Commands\AssetInstall;
-use RealEstateDoc\Asset\Commands\AssetReset;
-use RealEstateDoc\Asset\Commands\AssetUninstall;
-use RealEstateDoc\BackOffice\ViewComposers\Item;
-use RealEstateDoc\Asset\Models\User;
+use Shura\Asset\Commands\AssetInstall;
+use Shura\Asset\Commands\AssetReset;
+use Shura\Asset\Commands\AssetUninstall;
+use Shura\BackOffice\ViewComposers\Item;
+use Shura\Asset\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AssetServiceProvider extends ServiceProvider
@@ -33,9 +33,9 @@ class AssetServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadTranslationsFrom(__DIR__.'/translations', $this->namespace);
         $this->loadJSONTranslationsFrom(__DIR__.'/translations');
-        AliasLoader::getInstance()->alias('AssetHelper', 'RealEstateDoc\Asset\Helpers\Helper');
-        $router->aliasMiddleware('asset', 'RealEstateDoc\Asset\Middleware\Asset');
-        $router->aliasMiddleware('ass_check', 'RealEstateDoc\Asset\Middleware\CheckEnviroment');
+        AliasLoader::getInstance()->alias('AssetHelper', 'Shura\Asset\Helpers\Helper');
+        $router->aliasMiddleware('asset', 'Shura\Asset\Middleware\Asset');
+        $router->aliasMiddleware('ass_check', 'Shura\Asset\Middleware\CheckEnviroment');
         $this->publishes([
             __DIR__.'/config/asset.php' => config_path('asset.php'),
         ]);
@@ -53,16 +53,16 @@ class AssetServiceProvider extends ServiceProvider
         ], 'public');
         $this->registerAdminNavigator();
 //        var_dump('here');exit;
-        $this->app->singleton('RealEstateDoc\Asset\Authenticated', function ($app) {
+        $this->app->singleton('Shura\Asset\Authenticated', function ($app) {
             return User::find(auth()->id());
         });
         Relation::morphMap([
-            'asset_photos' => 'RealEstateDoc\Asset\Models\Asset',
-            'building_photo' => 'RealEstateDoc\Asset\Models\Building',
-            'venue_photo' => 'RealEstateDoc\Asset\Models\Venue',
-            'type' => 'RealEstateDoc\Asset\Models\VenueType',
-            'amenity' => 'RealEstateDoc\Asset\Models\Amenity',
-            'event' => 'RealEstateDoc\Asset\Models\EventType',
+            'asset_photos' => 'Shura\Asset\Models\Asset',
+            'building_photo' => 'Shura\Asset\Models\Building',
+            'venue_photo' => 'Shura\Asset\Models\Venue',
+            'type' => 'Shura\Asset\Models\VenueType',
+            'amenity' => 'Shura\Asset\Models\Amenity',
+            'event' => 'Shura\Asset\Models\EventType',
         ],false);
     }
 

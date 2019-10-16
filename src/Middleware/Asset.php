@@ -1,11 +1,11 @@
 <?php
 
-namespace RealEstateDoc\Asset\Middleware;
+namespace Shura\Asset\Middleware;
 
 use Closure;
-use RealEstateDoc\Asset\Controllers\AssetResponse;
-use RealEstateDoc\Asset\Helpers\Helper;
-use RealEstateDoc\Asset\Models\User;
+use Shura\Asset\Controllers\AssetResponse;
+use Shura\Asset\Helpers\Helper;
+use Shura\Asset\Models\User;
 class Asset
 {
     use AssetResponse;

@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use \RealEstateDoc\Asset\Models\Building;
+use \Shura\Asset\Models\Building;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -14,7 +14,7 @@ use \RealEstateDoc\Asset\Models\Building;
 */
 
 
-$factory->define(\RealEstateDoc\Asset\Models\Building::class, function (Faker $faker) use ($factory){
+$factory->define(\Shura\Asset\Models\Building::class, function (Faker $faker) use ($factory){
     $building = new Building();
     return [
         'name'=>$faker->company,

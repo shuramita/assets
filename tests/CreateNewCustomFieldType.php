@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use Illuminate\Support\Facades\Auth;
-use RealEstateDoc\Asset\Helpers\Helper;
-use RealEstateDoc\Asset\Models\Role;
-use RealEstateDoc\Asset\Models\User;
+use Shura\Asset\Helpers\Helper;
+use Shura\Asset\Models\Role;
+use Shura\Asset\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -26,7 +26,7 @@ class CreateNewCustomFieldType extends TestCase
         $status = Helper::getJsonFromStaticData('asset-status.json');
 //        var_dump($status);exit;
 
-        $field = factory(\RealEstateDoc\Asset\Models\Field::class)->create([
+        $field = factory(\Shura\Asset\Models\Field::class)->create([
             'model'=>'asset'
         ]);
 

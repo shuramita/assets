@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 */
 
 
-$factory->define(\RealEstateDoc\Asset\Models\Tag::class, function (Faker $faker) use ($factory){
+$factory->define(\Shura\Asset\Models\Tag::class, function (Faker $faker) use ($factory){
     $title = $faker->name;
     return [
         'value' => str_slug($title),

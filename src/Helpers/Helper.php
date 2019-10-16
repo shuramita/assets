@@ -1,13 +1,13 @@
 <?php
 
-namespace RealEstateDoc\Asset\Helpers;
+namespace Shura\Asset\Helpers;
 
 
-use RealEstateDoc\Asset\Constants\Option;
-use RealEstateDoc\Asset\Constants\Status;
+use Shura\Asset\Constants\Option;
+use Shura\Asset\Constants\Status;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use RealEstateDoc\Asset\Models\User;
+use Shura\Asset\Models\User;
 
 class Helper
 {
@@ -40,26 +40,26 @@ class Helper
     public static function rebindingAuthenticated(){
         // rebinding the singleton
         //TODO: rebinding not working on created
-        app()->rebinding('RealEstateDoc\Asset\Authenticated',function(){
+        app()->rebinding('Shura\Asset\Authenticated',function(){
             return User::find(auth()->id());
         });
-        return app('RealEstateDoc\Asset\Authenticated');
+        return app('Shura\Asset\Authenticated');
     }
     /**
-     * @return  \RealEstateDoc\Asset\Models\Organization
+     * @return  \Shura\Asset\Models\Organization
      */
     public static function org($rebind = false){
-        $user = app('RealEstateDoc\Asset\Authenticated');
+        $user = app('Shura\Asset\Authenticated');
         if($rebind || empty($user->organization) ) {
             $user =  Helper::rebindingAuthenticated();
         }
         return $user->organization ?? null;
     }
     /**
-     * @return  \RealEstateDoc\Asset\Models\Building
+     * @return  \Shura\Asset\Models\Building
      */
     public static function building($rebind = false){
-        $user = app('RealEstateDoc\Asset\Authenticated');
+        $user = app('Shura\Asset\Authenticated');
         if(empty($user)) return null;
         if($rebind || empty($user->building) ) {
             $user =  Helper::rebindingAuthenticated();

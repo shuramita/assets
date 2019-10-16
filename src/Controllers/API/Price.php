@@ -1,17 +1,17 @@
 <?php
 
-namespace RealEstateDoc\Asset\Controllers\API;
+namespace Shura\Asset\Controllers\API;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PhpParser\Builder\Class_;
-use RealEstateDoc\Asset\Controllers\AssetResponse;
-use RealEstateDoc\Asset\Controllers\Controller;
-use RealEstateDoc\Asset\Helpers\Helper;
+use Shura\Asset\Controllers\AssetResponse;
+use Shura\Asset\Controllers\Controller;
+use Shura\Asset\Helpers\Helper;
 use Validator;
 use Illuminate\Validation\Rule;
-use RealEstateDoc\Asset\Models\Price as PriceModel;
-use RealEstateDoc\Asset\Models\Asset;
+use Shura\Asset\Models\Price as PriceModel;
+use Shura\Asset\Models\Asset;
 class Price extends Controller
 {
     public function add(Request $request) {

@@ -1,17 +1,17 @@
 <?php
 
-namespace RealEstateDoc\Asset\Controllers\API;
+namespace Shura\Asset\Controllers\API;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Validation\Rule;
-use RealEstateDoc\Asset\Controllers\Controller;
-use RealEstateDoc\Asset\Helpers\Helper;
-use RealEstateDoc\Asset\Models\Customer;
-use RealEstateDoc\Asset\Models\Organization;
+use Shura\Asset\Controllers\Controller;
+use Shura\Asset\Helpers\Helper;
+use Shura\Asset\Models\Customer;
+use Shura\Asset\Models\Organization;
 use Illuminate\Support\Facades\DB;
-use RealEstateDoc\Asset\Models\User;
+use Shura\Asset\Models\User;
 use Validator;
 class OrganizationController extends Controller
 {

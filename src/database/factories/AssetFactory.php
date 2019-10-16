@@ -13,8 +13,8 @@ use Faker\Generator as Faker;
 */
 
 
-$factory->define(\RealEstateDoc\Asset\Models\Asset::class, function (Faker $faker) use ($factory){
-    $building = \RealEstateDoc\Asset\Helpers\Helper::building();
+$factory->define(\Shura\Asset\Models\Asset::class, function (Faker $faker) use ($factory){
+    $building = \Shura\Asset\Helpers\Helper::building();
     $floors = $building->floors;
 //    $photo
     return [
@@ -23,7 +23,7 @@ $factory->define(\RealEstateDoc\Asset\Models\Asset::class, function (Faker $fake
 //        'slug'=>'auto handled in Model',
 //        'category_id' =>0, // not required
 //        'building_id'=>null, // auto handled by Auth()
-        'asset_type_id' => \RealEstateDoc\Asset\Models\AssetType::inRandomOrder()->first()->id,
+        'asset_type_id' => \Shura\Asset\Models\AssetType::inRandomOrder()->first()->id,
         'floor_id'=> $building->floors->random()->id,
         'description'=>$faker->paragraph,
         'created_at'=>\Carbon\Carbon::now(),

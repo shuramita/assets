@@ -1,6 +1,6 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use RealEstateDoc\Asset\Helpers\Helper;
-use RealEstateDoc\Asset\Helpers\ImperialUnit;
-use RealEstateDoc\Asset\Models\Trails\AssetScope;
-use RealEstateDoc\Asset\Models\Trails\PriceCalculation;
-use RealEstateDoc\Calendar\Models\Contract;
+use Shura\Asset\Helpers\Helper;
+use Shura\Asset\Helpers\ImperialUnit;
+use Shura\Asset\Models\Trails\AssetScope;
+use Shura\Asset\Models\Trails\PriceCalculation;
+use Shura\Calendar\Models\Contract;
 
 class Asset extends Model
 {
@@ -121,71 +121,71 @@ class Asset extends Model
     }
     public function building()
     {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Building');
+        return $this->belongsTo('Shura\Asset\Models\Building');
     }
 //    public function getFloorAttribute(){
 //        return $this->floor();
 //    }
     public function floor()
     {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Floor');
+        return $this->belongsTo('Shura\Asset\Models\Floor');
     }
     public function cover()
     {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Media','cover_photo');
+        return $this->belongsTo('Shura\Asset\Models\Media','cover_photo');
     }
     public function background()
     {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Media','background_photo');
+        return $this->belongsTo('Shura\Asset\Models\Media','background_photo');
     }
     public function type()
     {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\AssetType','asset_type_id');
+        return $this->belongsTo('Shura\Asset\Models\AssetType','asset_type_id');
     }
     public function locationType() {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\AssetType','asset_type_id');
+        return $this->belongsTo('Shura\Asset\Models\AssetType','asset_type_id');
     }
     public function tags(): BelongsToMany {
-        return $this->belongsToMany('RealEstateDoc\Asset\Models\Tag','ass_asset_tag','asset_id','tag_id');
+        return $this->belongsToMany('Shura\Asset\Models\Tag','ass_asset_tag','asset_id','tag_id');
     }
     public function prices() {
-        return $this->belongsToMany('RealEstateDoc\Asset\Models\Price','ass_asset_price','asset_id','price_id')->withPivot('price');
+        return $this->belongsToMany('Shura\Asset\Models\Price','ass_asset_price','asset_id','price_id')->withPivot('price');
     }
     public function tax() {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Tax');
+        return $this->belongsTo('Shura\Asset\Models\Tax');
     }
     public function childs(){
-        return $this->hasMany('RealEstateDoc\Asset\Models\Asset','parent_asset_id')->with('prices');
+        return $this->hasMany('Shura\Asset\Models\Asset','parent_asset_id')->with('prices');
     }
     public function parent(){
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Asset','parent_asset_id')->with('prices');
+        return $this->belongsTo('Shura\Asset\Models\Asset','parent_asset_id')->with('prices');
     }
     public function photos() {
-        return $this->morphToMany('RealEstateDoc\Asset\Models\Media', 'mediable','ass_mediables');
+        return $this->morphToMany('Shura\Asset\Models\Media', 'mediable','ass_mediables');
     }
     public function fields(){
-        return $this->belongsToMany('RealEstateDoc\Asset\Models\Field','ass_asset_field','asset_id','field_id')->withPivot('value');
+        return $this->belongsToMany('Shura\Asset\Models\Field','ass_asset_field','asset_id','field_id')->withPivot('value');
     }
 //    public function fieldsPublic(){
 //        return $this->fields()->withoutGlobalScope('model');
 //    }
     public function types() {
-        return $this->belongsToMany('RealEstateDoc\Asset\Models\VenueType', 'ass_asset_static_data', 'asset_id','static_id');
+        return $this->belongsToMany('Shura\Asset\Models\VenueType', 'ass_asset_static_data', 'asset_id','static_id');
 //            ->where('static_type','=','type');
     }
 //    public function types() {
-//        return $this->morphToMany('RealEstateDoc\Asset\Models\VenueType', 'statics', 'ass_asset_static_data',
+//        return $this->morphToMany('Shura\Asset\Models\VenueType', 'statics', 'ass_asset_static_data',
 //            'static_id','asset_id');
 //    }
 
     public function events() {
-        return $this->belongsToMany('RealEstateDoc\Asset\Models\EventType', 'ass_asset_static_data', 'asset_id','static_id');
+        return $this->belongsToMany('Shura\Asset\Models\EventType', 'ass_asset_static_data', 'asset_id','static_id');
     }
     public function amenities() {
-        return $this->belongsToMany('RealEstateDoc\Asset\Models\Amenity', 'ass_asset_static_data', 'asset_id','static_id');
+        return $this->belongsToMany('Shura\Asset\Models\Amenity', 'ass_asset_static_data', 'asset_id','static_id');
     }
     public function owner(){
-        return $this->belongsTo('RealEstateDoc\Asset\Models\User','created_by')->select('*');
+        return $this->belongsTo('Shura\Asset\Models\User','created_by')->select('*');
 
     }
     public function getBookedDatesAttribute($format = 'toIso8601String'){

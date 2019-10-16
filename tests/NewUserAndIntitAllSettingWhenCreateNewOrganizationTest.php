@@ -6,7 +6,7 @@ use App\User;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-use RealEstateDoc\Asset\Models\Role;
+use Shura\Asset\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -26,7 +26,7 @@ class NewUserAndIntitAllSettingWhenCreateNewOrganizationTest extends TestCase
 
         Auth::login($user);
 
-        $organization = factory(\RealEstateDoc\Asset\Models\Organization::class)->create();
+        $organization = factory(\Shura\Asset\Models\Organization::class)->create();
 //        var_dump($organization);
         $this->assertDatabaseHas(config('asset.schema_prefix').'role',[
             'name'=>'admin',

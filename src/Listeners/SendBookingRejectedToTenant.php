@@ -1,10 +1,10 @@
 <?php
 
-namespace RealEstateDoc\Asset\Listener;
+namespace Shura\Asset\Listener;
 
 use Illuminate\Support\Facades\Mail;
-use RealEstateDoc\Asset\Events\BookingRejected;
-use RealEstateDoc\Asset\Mails\BookingRequestRejectedEmailToTenant;
+use Shura\Asset\Events\BookingRejected;
+use Shura\Asset\Mails\BookingRequestRejectedEmailToTenant;
 
 class SendBookingRejectedToTenant
 {

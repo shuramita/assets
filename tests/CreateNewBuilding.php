@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use Illuminate\Support\Facades\Auth;
-use RealEstateDoc\Asset\Helpers\Helper;
-use RealEstateDoc\Asset\Models\Role;
-use RealEstateDoc\Asset\Models\User;
+use Shura\Asset\Helpers\Helper;
+use Shura\Asset\Models\Role;
+use Shura\Asset\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -23,7 +23,7 @@ class CreateNewBuilding extends TestCase
         $user_id = 1;
         $user = Auth::loginUsingId($user_id);
         $user = User::find($user_id);
-        $building = factory(\RealEstateDoc\Asset\Models\Building::class)->create();
+        $building = factory(\Shura\Asset\Models\Building::class)->create();
 
         $this->assertDatabaseHas(config('asset.schema_prefix').'building',[
             'name'=>$building->name,
@@ -33,6 +33,6 @@ class CreateNewBuilding extends TestCase
             'key'=>$user_id,
             'organization_id'=>$user->organization->id
         ]);
-        $this->assertEquals(app('RealEstateDoc\Asset\Authenticated')->building->id,$building->id);
+        $this->assertEquals(app('Shura\Asset\Authenticated')->building->id,$building->id);
     }
 }

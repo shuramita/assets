@@ -1,6 +1,6 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -33,7 +33,7 @@ class AssetType extends Model
 
     public function building() : BelongsTo
     {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Building')->withDefault();
+        return $this->belongsTo('Shura\Asset\Models\Building')->withDefault();
     }
     public function scopeEnabled($query){
         return $query->where('enabled','=',true);

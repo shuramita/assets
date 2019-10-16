@@ -1,20 +1,20 @@
 <?php
 
-namespace RealEstateDoc\Asset\Controllers\API;
+namespace Shura\Asset\Controllers\API;
 
 use Illuminate\Http\Request;
-use RealEstateDoc\Asset\Controllers\Controller;
-use RealEstateDoc\Asset\Helpers\Helper;
-use RealEstateDoc\Asset\Models\Amenity;
-use RealEstateDoc\Asset\Models\Asset as AssetModel;
-use RealEstateDoc\Asset\Models\AssetType;
-use RealEstateDoc\Asset\Models\EventType;
-use RealEstateDoc\Asset\Models\Organization;
-use RealEstateDoc\Asset\Models\VenueType;
+use Shura\Asset\Controllers\Controller;
+use Shura\Asset\Helpers\Helper;
+use Shura\Asset\Models\Amenity;
+use Shura\Asset\Models\Asset as AssetModel;
+use Shura\Asset\Models\AssetType;
+use Shura\Asset\Models\EventType;
+use Shura\Asset\Models\Organization;
+use Shura\Asset\Models\VenueType;
 use Validator;
 use Illuminate\Validation\Rule;
-use RealEstateDoc\Asset\Models\Price;
-use RealEstateDoc\Asset\Models\Field;
+use Shura\Asset\Models\Price;
+use Shura\Asset\Models\Field;
 
 class SystemController extends Controller
 {

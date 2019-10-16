@@ -8,5 +8,5 @@ export const ASSET_TYPE_BY_ID = {
 }
 
 export const IMAGE_URL = {
-    NO_FLOORPLAN: 'http://demo.realestatedoc.co/upload/photos/1-2019/origin-1548906463-image-not-available-png-3.png'
+    NO_FLOORPLAN: 'http://demo.shura.co/upload/photos/1-2019/origin-1548906463-image-not-available-png-3.png'
 }

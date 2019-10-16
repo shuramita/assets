@@ -1,13 +1,13 @@
 <?php
 
-namespace RealEstateDoc\Asset\Controllers\API;
+namespace Shura\Asset\Controllers\API;
 
 use Illuminate\Http\Request;
-use RealEstateDoc\Asset\Controllers\Controller;
-use RealEstateDoc\Asset\Models\Booking;
+use Shura\Asset\Controllers\Controller;
+use Shura\Asset\Models\Booking;
 use Illuminate\Validation\Rule;
-use RealEstateDoc\Asset\Models\Asset;
-use RealEstateDoc\Asset\Events\NewAssetBooking;
+use Shura\Asset\Models\Asset;
+use Shura\Asset\Events\NewAssetBooking;
 use Validator;
 
 class BookingController extends Controller

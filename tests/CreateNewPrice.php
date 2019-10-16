@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use Illuminate\Support\Facades\Auth;
-use RealEstateDoc\Asset\Helpers\Helper;
-use RealEstateDoc\Asset\Models\Role;
-use RealEstateDoc\Asset\Models\User;
+use Shura\Asset\Helpers\Helper;
+use Shura\Asset\Models\Role;
+use Shura\Asset\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -23,7 +23,7 @@ class CreateNewPrice extends TestCase
         $user_id = 1;
         $user = Auth::loginUsingId($user_id);
         $user = User::find($user_id);
-        $price = factory(\RealEstateDoc\Asset\Models\Price::class)->create();
+        $price = factory(\Shura\Asset\Models\Price::class)->create();
 
         
         $this->assertDatabaseHas(config('asset.schema_prefix').'price',[

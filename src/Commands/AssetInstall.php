@@ -1,10 +1,10 @@
 <?php
 
-namespace RealEstateDoc\Asset\Commands;
+namespace Shura\Asset\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
-use RealEstateDoc\Invoice\Database\Seeds\TermSeeder;
+use Shura\Invoice\Database\Seeds\TermSeeder;
 
 class AssetInstall extends Command
 {
@@ -41,11 +41,11 @@ class AssetInstall extends Command
     {
         Artisan::call("migrate");
 //        $this->call([
-//            \RealEstateDoc\Asset\Database\Seeds\AssetTypeSeeder::class
+//            \Shura\Asset\Database\Seeds\AssetTypeSeeder::class
 //        ]);
-        Artisan::call("db:seed",['--class'=> "RealEstateDoc\Asset\Database\Seeds\AssetTypeSeeder"]);
-        //php artisan db:seed --class="RealEstateDoc\Asset\Database\Seeds\StaticDataSeeder"
-        Artisan::call("db:seed",['--class'=> "RealEstateDoc\Asset\Database\Seeds\StaticDataSeeder"]);
+        Artisan::call("db:seed",['--class'=> "Shura\Asset\Database\Seeds\AssetTypeSeeder"]);
+        //php artisan db:seed --class="Shura\Asset\Database\Seeds\StaticDataSeeder"
+        Artisan::call("db:seed",['--class'=> "Shura\Asset\Database\Seeds\StaticDataSeeder"]);
 
 
 

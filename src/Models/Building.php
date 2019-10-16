@@ -1,11 +1,11 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use RealEstateDoc\Asset\Helpers\Helper;
+use Shura\Asset\Helpers\Helper;
 
 class Building extends Model
 {
@@ -53,19 +53,19 @@ class Building extends Model
 //        $this->attributes['photos'] = gettype($value) != 'string' ? json_encode($value) : $value;
 //    }
     public function organization() {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Organization','organization_id');
+        return $this->belongsTo('Shura\Asset\Models\Organization','organization_id');
     }
     public function logo() {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Media','logo_id');
+        return $this->belongsTo('Shura\Asset\Models\Media','logo_id');
     }
     public function photos() {
-        return $this->morphToMany('RealEstateDoc\Asset\Models\Media', 'mediable','ass_mediables');
+        return $this->morphToMany('Shura\Asset\Models\Media', 'mediable','ass_mediables');
     }
     public function background() {
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Media','background_photo');
+        return $this->belongsTo('Shura\Asset\Models\Media','background_photo');
     }
     public function floors(){
-        return $this->hasMany('RealEstateDoc\Asset\Models\Floor');
+        return $this->hasMany('Shura\Asset\Models\Floor');
 
     }
     protected static function boot()

@@ -1,6 +1,6 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,7 +15,7 @@ class Customer extends Model
     protected $hidden = [];
     protected $appends = ['name'];
     public function bookings(){
-        return $this->hasMany('RealEstateDoc\Asset\Models\Booking');
+        return $this->hasMany('Shura\Asset\Models\Booking');
     }
     public function getNameAttribute(){
         return "{$this->first_name} {$this->last_name}";

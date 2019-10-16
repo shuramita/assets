@@ -1,6 +1,6 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 use Averspace\Admin\Models\Media as BaseMedia;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +21,6 @@ class Media extends BaseMedia
      */
     public function assets()
     {
-        return $this->morphedByMany('RealEstateDoc\Asset\Models\Asset', 'mediable','ass_mediable');
+        return $this->morphedByMany('Shura\Asset\Models\Asset', 'mediable','ass_mediable');
     }
 }

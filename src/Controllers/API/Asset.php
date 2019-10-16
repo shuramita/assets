@@ -1,20 +1,20 @@
 <?php
 
-namespace RealEstateDoc\Asset\Controllers\API;
+namespace Shura\Asset\Controllers\API;
 
 use Illuminate\Http\Request;
-use RealEstateDoc\Asset\Controllers\Controller;
-use RealEstateDoc\Asset\Helpers\Helper;
-use RealEstateDoc\Asset\Models\Asset as AssetModel;
-use RealEstateDoc\Asset\Models\AssetType;
-use RealEstateDoc\Asset\Models\EventType;
-use RealEstateDoc\Asset\Models\Organization;
-use RealEstateDoc\Asset\Models\VenueType;
+use Shura\Asset\Controllers\Controller;
+use Shura\Asset\Helpers\Helper;
+use Shura\Asset\Models\Asset as AssetModel;
+use Shura\Asset\Models\AssetType;
+use Shura\Asset\Models\EventType;
+use Shura\Asset\Models\Organization;
+use Shura\Asset\Models\VenueType;
 use Validator;
 use Illuminate\Validation\Rule;
-use RealEstateDoc\Asset\Models\Price;
-use RealEstateDoc\Asset\Models\Field;
-use RealEstateDoc\Asset\Models\Amenity;
+use Shura\Asset\Models\Price;
+use Shura\Asset\Models\Field;
+use Shura\Asset\Models\Amenity;
 
 class Asset extends Controller
 {
@@ -228,7 +228,7 @@ class Asset extends Controller
                 ->paginate($request->per_page ?? 15));
     }
     public function searchMarketPlace(Request $request) {
-//        var_dump(\RealEstateDoc\Asset\Models\Asset::with('owner')->find(35)->toArray());exit;
+//        var_dump(\Shura\Asset\Models\Asset::with('owner')->find(35)->toArray());exit;
         return $this->jsonResponse(
             AssetModel::
                 with(['building','cover','background','prices','events','types','photos','owner'])

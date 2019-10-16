@@ -1,14 +1,14 @@
 <?php
 
-namespace RealEstateDoc\Asset\Mails;
+namespace Shura\Asset\Mails;
 
 use App\Mail\Resource;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use RealEstateDoc\Asset\Models\Booking;
-use RealEstateDoc\Asset\Models\Customer;
+use Shura\Asset\Models\Booking;
+use Shura\Asset\Models\Customer;
 
 class NewBookingRequestEmailToTenant extends Mailable
 {

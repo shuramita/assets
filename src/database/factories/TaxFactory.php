@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 */
 
 
-$factory->define(\RealEstateDoc\Asset\Models\Tax::class, function (Faker $faker) use ($factory){
+$factory->define(\Shura\Asset\Models\Tax::class, function (Faker $faker) use ($factory){
     $percent = random_int(5,12);
     return [
         'value' => "$percent",

@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use Illuminate\Support\Facades\Auth;
-use RealEstateDoc\Asset\Models\Role;
-use RealEstateDoc\Asset\Models\User;
+use Shura\Asset\Models\Role;
+use Shura\Asset\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -22,7 +22,7 @@ class CreateNewTag extends TestCase
         $user_id = 1;
         $user = Auth::loginUsingId($user_id);
         $user = User::find($user_id);
-        $tag = factory(\RealEstateDoc\Asset\Models\Tag::class)->create();
+        $tag = factory(\Shura\Asset\Models\Tag::class)->create();
 
         $this->assertDatabaseHas(config('asset.schema_prefix').'setting',[
             'key'=>'tag',

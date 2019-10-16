@@ -1,6 +1,6 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 
 class User extends \App\User
@@ -12,7 +12,7 @@ class User extends \App\User
         return $this->workingOrganization();
     }
     /**
-     * @return  \RealEstateDoc\Asset\Models\Building
+     * @return  \Shura\Asset\Models\Building
      */
     public function getBuildingAttribute(){
         $default_building = Setting::where('key' ,'=', auth()->id())->where('model','=','building')->first();

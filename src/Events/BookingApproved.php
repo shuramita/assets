@@ -1,11 +1,11 @@
 <?php
 
-namespace RealEstateDoc\Asset\Events;
+namespace Shura\Asset\Events;
 
 use Illuminate\Queue\SerializesModels;
-use RealEstateDoc\Asset\Models\Asset;
-use RealEstateDoc\Asset\Models\Booking;
-use RealEstateDoc\Asset\Models\Venue;
+use Shura\Asset\Models\Asset;
+use Shura\Asset\Models\Booking;
+use Shura\Asset\Models\Venue;
 
 class BookingApproved
 {

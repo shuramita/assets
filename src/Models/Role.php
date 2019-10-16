@@ -1,6 +1,6 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -45,7 +45,7 @@ class Role extends Model
         return $role;
     }
     public function organization(){
-        return $this->belongsTo('RealEstateDoc\Asset\Models\Organization');
+        return $this->belongsTo('Shura\Asset\Models\Organization');
     }
     /**
      * Relation with users

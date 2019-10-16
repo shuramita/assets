@@ -55,7 +55,7 @@ export class AssetListComponent implements OnInit {
                 const priceDisplay = firstNormalPrice ? firstNormalPrice.pivot.price + ' - ' + firstNormalPrice.unit : '0';
                 assetInfo = {
                     'id': asset.id,
-                    'cover': asset.cover ? 'http://demo.realestatedoc.co/' + asset.cover.values.medium.uri : IMAGE_URL.NO_FLOORPLAN,
+                    'cover': asset.cover ? 'http://demo.shura.co/' + asset.cover.values.medium.uri : IMAGE_URL.NO_FLOORPLAN,
                     'name': asset.name,
                     'size': asset.size.value + ' ' + asset.size.unit,
                     'building': asset.building.name,

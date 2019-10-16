@@ -6,10 +6,10 @@
  * Time: 10:16 AM
  */
 
-namespace RealEstateDoc\Asset\Models\Trails;
+namespace Shura\Asset\Models\Trails;
 
 
-use RealEstateDoc\Asset\Helpers\Helper;
+use Shura\Asset\Helpers\Helper;
 
 trait VenueScope
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace RealEstateDoc\Asset\Models;
+namespace Shura\Asset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use RealEstateDoc\Asset\Facades\Auth;
-use RealEstateDoc\Asset\Helpers\Helper;
+use Shura\Asset\Facades\Auth;
+use Shura\Asset\Helpers\Helper;
 use Illuminate\Database\Eloquent\Builder;
 
 class Tag extends Model
@@ -25,7 +25,7 @@ class Tag extends Model
     }
 
     public function assets(){
-        return $this->belongsToMany('RealEstateDoc\Asset\Models\Asset','ass_asset_tag','tag_id','asset_id');
+        return $this->belongsToMany('Shura\Asset\Models\Asset','ass_asset_tag','tag_id','asset_id');
     }
 
     protected static function boot()

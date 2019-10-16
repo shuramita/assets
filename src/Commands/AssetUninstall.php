@@ -1,6 +1,6 @@
 <?php
 
-namespace RealEstateDoc\Asset\Commands;
+namespace Shura\Asset\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;

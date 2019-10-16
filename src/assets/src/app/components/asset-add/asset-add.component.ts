@@ -259,7 +259,7 @@ export abstract class AssetAddComponent implements OnInit, OnDestroy {
         if (assetInfo.photos && assetInfo.photos.length) {
             assetInfo.photos.forEach(photo => {
                 photoArr.push({
-                    url: "http://demo.realestatedoc.co/" + photo.values.origin.uri,
+                    url: "http://demo.shura.co/" + photo.values.origin.uri,
                     fileName: photo.values.name
                 })
 
@@ -268,7 +268,7 @@ export abstract class AssetAddComponent implements OnInit, OnDestroy {
 
         if (assetInfo.cover) {
             coverArr.push({
-                url: "http://demo.realestatedoc.co/" + assetInfo.cover.values.origin.uri,
+                url: "http://demo.shura.co/" + assetInfo.cover.values.origin.uri,
                 fileName: assetInfo.cover.title
             })
         }
@@ -450,10 +450,10 @@ export abstract class AssetAddComponent implements OnInit, OnDestroy {
             } else {
                 if (this.assetId) {
                     let _photo = this.assetInfo.photos.find(existPhoto => {
-                        let url = 'http://demo.realestatedoc.co/' + existPhoto.values.origin.uri;
+                        let url = 'http://demo.shura.co/' + existPhoto.values.origin.uri;
                         return url === photo.src
                     });
-    
+
                     if (_photo) {
                         this.photos.push(_photo.id);
                     } else {

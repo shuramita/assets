@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use RealEstateDoc\Asset\Helpers\Helper;
+use Shura\Asset\Helpers\Helper;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -14,7 +14,7 @@ use RealEstateDoc\Asset\Helpers\Helper;
 */
 
 
-$factory->define(\RealEstateDoc\Asset\Models\Price::class, function (Faker $faker) use ($factory){
+$factory->define(\Shura\Asset\Models\Price::class, function (Faker $faker) use ($factory){
     $price_option = Helper::getJsonFromStaticData('price_option.json');
     $price_type = $faker->randomElement($price_option->type);
     $price_unit = $faker->randomElement($price_option->unit);

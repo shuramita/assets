@@ -13,8 +13,8 @@ use Faker\Generator as Faker;
 */
 
 
-$factory->define(\RealEstateDoc\Asset\Models\AssetType::class, function (Faker $faker) use ($factory){
-    $asset_types = collect(\RealEstateDoc\Asset\Helpers\Helper::getJsonFromStaticData('asset-type.json'));
+$factory->define(\Shura\Asset\Models\AssetType::class, function (Faker $faker) use ($factory){
+    $asset_types = collect(\Shura\Asset\Helpers\Helper::getJsonFromStaticData('asset-type.json'));
     return [
         'name'=>$faker->name,
         'system_id'=>$asset_types->first()->id,
