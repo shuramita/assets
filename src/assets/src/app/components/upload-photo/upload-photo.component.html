@@ -1,0 +1,82 @@
+<div class="upload-photo-container">
+    <div class="title-container">
+        <span class="title"> {{title}}</span>
+    </div>
+    <div class="upload-img-container" appFileDrop [accept]="supportedExtensions"
+         (fileOver)="onFileOver($event)"
+         (fileDrop)="onFileChange($event)"
+         [ngClass]="{'file-over': fileOver}">
+        <div class="drag-drop-container">
+            <mat-icon>cloud_upload</mat-icon>
+            <div class="title">Drag & Drop</div>
+            <div class="description">Maximum {{max}} files (jpg/png), 2MB each</div>
+            <button mat-button class="browse-btn" (click)="openSelectBox()">Browse...</button>
+        </div>
+        <input class="input-file"
+               type="file"
+               [disabled]="disabled"
+               [accept]="supportedExtensions"
+               [multiple]="isMultiple === true" (change)="onFileChange(input.files)"
+               #input>
+    </div>
+    <ng-container *ngIf="preview && files.length">
+        <div class="remove-all-img">
+            <button mat-button (click)="deleteAll()">Clear all</button>
+        </div>
+        <div class="preview-container">
+            <div class="img-preview-container" *ngFor="let file of files">
+                <div class="info-preview">
+                    <div class="img-preview" [ngStyle]="{'background-image': 'url('+ file.src +')'}">
+
+                    </div>
+                    <div class="img-info">
+                        <div class="img-name">
+                            {{file.file.name}}
+                        </div>
+                        <div class="img-size">
+                            {{file.file.size / 1024}}KB
+                        </div>
+                    </div>
+                </div>
+                <div class="remove-img-btn" (click)="deleteFile(file)">
+                    <mat-icon>close</mat-icon>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
+<!--<div appFileDrop [accept]="supportedExtensions"
+     (fileOver)="onFileOver($event)"
+     (fileDrop)="onFileChange($event)"
+     [ngClass]="{'img-ul-file-is-over': fileOver}">
+    <div class="img-ul-file-upload img-ul-hr-inline-group">
+        <label *ngIf="fileCounter != max"
+               class="img-ul-upload img-ul-button"
+               [ngClass]="{'img-ul-disabled': disabled}">
+
+        </label>
+        <button *ngIf="fileCounter > 0"
+                [disabled]="disabled"
+                class="img-ul-clear img-ul-button"
+                (click)="deleteAll()"
+                [innerText]="clearButtonCaption">
+        </button>
+    </div>
+
+    <p class="img-ul-file-too-large" *ngIf="showFileTooLargeMessage" [innerText]="fileTooLargeMessage"></p>
+    <div *ngIf="preview" class="img-ul-container img-ul-hr-inline-group">
+        <div class="img-ul-image" *ngFor="let file of files"
+             (click)="previewFileClicked(file)"
+             [ngStyle]="{'background-image': 'url('+ file.src +')'}">
+            <div *ngIf="file.pending" class="img-ul-loading-overlay">
+                <div class="img-ul-spinning-circle"></div>
+            </div>
+            <div *ngIf="!file.pending"
+                 [ngClass]="{'img-ul-disabled': disabled}"
+                 class="img-ul-x-mark"
+                 (click)="deleteFile(file)">
+                <span class="img-ul-close"></span>
+            </div>
+        </div>
+    </div>
+</div>-->

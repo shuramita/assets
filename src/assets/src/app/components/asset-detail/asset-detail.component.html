@@ -1,0 +1,162 @@
+<div class="asset-detail">
+    <mat-toolbar class="header-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <a mat-button routerLink="/asset">
+                <mat-icon>arrow_back</mat-icon>
+            </a>
+            <span class="title">
+                Asset Details
+            </span>
+        </div>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <div *ngIf="data" class="main-container" fxLayout="row" fxLayoutAlign="center">
+        <div class="main-content" fxLayout="column" fxLayoutGap="16px" fxFlex="60%">
+            <div class="block-1" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="status">
+                    {{data.status}}
+                </div>
+                <div class="property-info" fxLayout="row" fxLayoutAlign="center">
+                    <div class="title">
+                        Asset ID::
+                    </div>
+                    <div class="value">
+                        {{data.id}}
+                    </div>
+                </div>
+            </div>
+            <div class="name">
+                {{data.name}}
+            </div>
+            <div class="photo-container">
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+            </div>
+            <div class="block-2 split-line" fxLayout="row" fxLayoutAlign="start center">
+                <div class="property-info" fxFlex="50">
+                    <div class="title">
+                        Asset Type
+                    </div>
+                    <div class="value">
+                        {{data.asset_type_id | assetTypePipe}}
+                    </div>
+                </div>
+                <div class="property-info" fxFlex="50">
+                    <div class="title">
+                        Size
+                    </div>
+                    <div class="value">
+                        {{data.size.value}} {{data.size.unit}}
+                    </div>
+                </div>
+            </div>
+            <div class="description split-line">
+                <div class="property-info">
+                    <div class="title">
+                        Description
+                    </div>
+                    <div class="value">
+                        {{data.description}}
+                    </div>
+                </div>
+            </div>
+            <div class="location split-line">
+                <div class="property-info">
+                    <div class="title">
+                        Location
+                    </div>
+                    <div class="value" fxLayout="row" fxLayoutAlign="start center">
+                        {{data.building.name}}
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                        {{data.floor.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="map-floor split-line">
+                <div class="property-info">
+                    <div class="title">
+                        Map Floor
+                    </div>
+                    <div class="value">
+                    </div>
+                </div>
+            </div>
+            <div class="sub-location-block">
+                <div class="list-title" fxLayout="row">
+                    <span class="order" fxFlex="10" fxLayoutAlign="start center">No. </span>
+                    <span class="sub-location-name" fxFlex="90" fxLayoutAlign="start center">
+                            Sub Location Name
+                    </span>
+                </div>
+                <mat-divider></mat-divider>
+                <mat-accordion>
+                    <mat-expansion-panel *ngFor="let subLocation of subLocations; let i =index">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <div class="order" fxFlex="10" fxLayoutAlign="start center">{{i + 1}}</div>
+                                <div class="sub-location-name" fxLayout="column" fxFlex="90"
+                                     fxLayoutAlign="start">
+                                    <div>{{subLocation.name}}</div>
+                                    <div class="sub-location-description">{{subLocation.description}}sadsad</div>
+                                </div>
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+                        <div fxLayout fxFlexOffset="10" fxFlex="90">
+                            <div class="price" fxFlex="33">
+                                <div class="font-weight-bold">Normal</div>
+                                <ng-container *ngFor="let price of subLocation.normalPrices">
+                                    <div>{{price.id | pricePipe}}: S$<strong>{{price.pivot.price}}</strong></div>
+                                </ng-container>
+                            </div>
+                            <div class="price" fxFlex="33">
+                                <div class="font-weight-bold">Off Peak</div>
+                                <ng-container *ngFor="let price of subLocation.peakPrices">
+                                    <div>{{price.id | pricePipe}}: S$<strong>{{price.pivot.price}}</strong></div>
+                                </ng-container>
+                            </div>
+                            <div class="price" fxFlex="33">
+                                <div class="font-weight-bold">Off Peak</div>
+                                <ng-container *ngFor="let price of subLocation.offPeakPrices">
+                                    <div>{{price.id | pricePipe}}: S$<strong>{{price.pivot.price}}</strong></div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+            <div class="block-3 split-line">
+                <div class="peak">
+                    NORMAL
+                </div>
+                <div fxLayout="row">
+                    <div class="property-info" fxFlex="20" *ngFor="let price of normalPrices">
+                        <div class="title">{{price.name}}</div>
+                        <div class="value">S${{price.pivot.price}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-4 split-line">
+                <div class="peak">
+                    PEAK
+                </div>
+                <div fxLayout="row">
+                    <div class="property-info" fxFlex="20" *ngFor="let price of peakPrices">
+                        <div class="title">{{price.name}}</div>
+                        <div class="value">S${{price.pivot.price}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-5 split-line">
+                <div class="peak">
+                    Off PEAK
+                </div>
+                <div fxLayout="row">
+                    <div class="property-info" fxFlex="20" *ngFor="let price of offPeakPrices">
+                        <div class="title">{{price.name}}</div>
+                        <div class="value">S${{price.pivot.price}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

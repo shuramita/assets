@@ -1,0 +1,209 @@
+.asset-add {
+
+    mat-toolbar {
+        font-size: 16px;
+        font-weight: 600;
+        background-color: #FFF;
+        border-bottom: 1px solid #cdcdcd;
+        position: fixed;
+        z-index: 2;
+
+        .title {
+            //color: #333333;
+        }
+
+        .save-btn {
+            border-radius: 2px;
+            min-width: 120px;
+            min-height: 40px;
+            //background-color: #723bd4;
+            color: #FFF;
+        }
+    }
+
+    .main-container {
+        background-color: #FFF;
+        color: #333333;
+        padding-top: 104px;
+
+        .block-container {
+            background-color: #f5f5f5;
+            padding: 16px;
+
+            .block-title {
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+
+        }
+
+        .add-new-btn {
+            color: #723bd4;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .sub-location-container {
+            .list-title {
+                padding: 0 16px;
+            }
+        }
+
+        .list-title {
+            min-height: 40px;
+        }
+
+        .order,
+        .sub-location-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333333;
+        }
+
+        .mat-card {
+            padding: 16px;
+        }
+
+        .mat-expansion-panel {
+            box-shadow: none;
+            font-size: 12px;
+            border-bottom: solid 1px #cdcdcd;
+
+            &:last-child {
+                border-bottom: unset;
+            }
+
+            .mat-expansion-panel-header {
+                font-size: 14px;
+            }
+        }
+
+        .price {
+            background-color: #f5f5f5;
+            border-right: solid 2px #cdcdcd;
+            padding: 8px 16px;
+            font-size: 12px;
+
+            &:last-child {
+                border-right: none;
+            }
+        }
+
+        .price-block-container {
+
+            .header-block {
+                font-size: 16px;
+                font-weight: 600;
+                color: #222222;
+
+                .mat-icon {
+                    font-size: 14px;
+                    padding-left: 10px;
+                }
+            }
+
+            .content-block {
+
+                .peak-header {
+                    padding: 0 16px 13px 16px;
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #333333;
+                }
+
+                .peak-list {
+                    padding: 13px 16px;
+                    font-size: 12px;
+                    color: #777777;
+
+                    .peak-list-item {
+                        padding: 12px 0;
+                        border-bottom: solid 1px #cdcdcd;
+
+                        &:last-child {
+                            border-bottom: unset;
+                        }
+                    }
+                }
+            }
+        }
+
+        .custom-field-container {
+
+            .description-block {
+                font-size: 12px;
+                line-height: 2;
+                color: #777777;
+            }
+
+            .list-field {
+                min-height: 40px;
+                border-bottom: solid 1px #cdcdcd;
+
+                &:last-child {
+                    border-bottom: unset;
+                }
+            }
+        }
+
+        .tag-wrapper {
+            flex-wrap: wrap !important;
+            .tag {
+                font-size: 14px;
+                border-radius: 18px !important;
+                background-color: #e6e6e6;
+                margin-bottom: 16px;
+            }
+        
+            .tag-close-icon {
+                bottom: 4px;
+                padding-top: 5px;
+                font-size: 16px;
+                font-weight: bold;
+            }
+        }
+
+        .autocomplete-form-field {
+            margin-bottom: 0 !important;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        .amenity-content {
+            border-bottom: 1px solid #cdcdcd;
+            width: 100%;
+        }
+
+        .add-more-amenity {
+            cursor: pointer;
+        }
+
+        .add-more-amenity:hover {
+            background-color: #cdcdcd;
+        }
+    }
+}
+
+.loading {
+    display: flex;
+    flex-direction: row;
+    place-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
+.icon-size {
+    width: 194px;
+    height: 32px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 24px;
+}
+
+.status-label-color {
+    color: rgba(0, 0, 0, 0.54);
+}

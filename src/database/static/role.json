@@ -1,0 +1,5 @@
+[
+  {"name":"admin","description":"Admin"},
+  {"name":"manager","description":"Manager"},
+  {"name":"staff","description":"Staff"}
+]

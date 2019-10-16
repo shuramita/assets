@@ -1,0 +1,101 @@
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.left-sidenav-container {
+    flex: 1;
+}
+
+.left-sidenav {
+    color: #d36423;
+    border-right: 1px solid #cdcdcd;
+}
+
+.mat-list-item {
+    color: #333;
+}
+
+.mat-drawer {
+    background: White;
+}
+
+.mat-toolbar {
+    background: #fff;
+    color: black;
+    border-bottom: 1px solid #cdcdcd;
+
+    .notification {
+        margin-right: 25px;
+
+    }
+}
+
+
+.left-sidenav-content {
+    //display: flex;
+    //height: 100%;
+    //width: 100%;
+    //align-items: center;
+    //justify-content: center;
+    //background-color: #e8ded7;
+    //opacity: 0.9;
+}
+
+.header-toolbar {
+    z-index: 2;
+}
+
+.left-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox.
+       Every toolbar row uses a flexbox row layout. */
+    height: 100%;
+    margin-left: 24px;
+    flex: 1 1 auto;
+    border-left: 1px solid #cdcdcd;
+    text-align: center;
+    align-items: center;
+    display: grid;
+}
+
+//
+.btn.btn-orange.radius {
+    border-radius: 40px;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.btn.btn-orange {
+    background-color: #ff9700;
+    -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15);
+}
+
+a.waves-effect, a.waves-light {
+    display: inline-block;
+}
+
+.view-as {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    z-index: 2;
+    padding: 10px 15px;
+}
+
+.btn-orange {
+    background-color: #f57c00 !important;
+    color: #fff !important;
+}
+
+.icon-size {
+    width: 194px;
+    height: 32px;
+}

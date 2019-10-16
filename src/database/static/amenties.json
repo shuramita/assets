@@ -1,0 +1,13 @@
+[
+  {"id":1,"slug":"air-conditioning","system_id":"air-conditioning","name":"Air conditioning","description":"Air conditioning"},
+  {"id":2,"slug":"bar-tab","system_id":"bar-tab","name":"Bar tab","description":"Bar tab"},
+  {"id":3,"slug":"bring-your-own-stuff","system_id":"bring-your-own-stuff","name":"Bring your own stuff","description":"Bring your own stuff"},
+  {"id":4,"slug":"full-bar","system_id":"full-bar","name":"Full bar","description":"Full bar"},
+  {"id":5,"slug":"microphone","system_id":"microphone","name":"Microphone","description":"Microphone"},
+  {"id":6,"slug":"pool","system_id":"pool","name":"Pool","description":"Pool"},
+  {"id":7,"slug":"private-room","system_id":"private-room","name":"Private room","description":"Private room"},
+  {"id":8,"slug":"projector-tv","system_id":"projector-tv","name":"Projector/TV","description":"Projector/TV"},
+  {"id":9,"slug":"smoking-area","system_id":"smoking-area","name":"Smoking area","description":"Smoking area"},
+  {"id":10,"slug":"stage","system_id":"stage","name":"Stage","description":"Stage"},
+  {"id":11,"slug":"wifi","system_id":"wifi","name":"Wifi","description":"Wifi"}
+]

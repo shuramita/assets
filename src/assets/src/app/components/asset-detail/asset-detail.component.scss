@@ -1,0 +1,127 @@
+.asset-detail {
+
+    mat-toolbar {
+        font-size: 16px;
+        font-weight: 600;
+        background-color: #FFF;
+
+        .title {
+            //color: #333333;
+        }
+
+        .save-btn {
+            border-radius: 2px;
+            min-width: 120px;
+            min-height: 40px;
+            //background-color: #723bd4;
+            color: #FFF;
+        }
+    }
+
+    .main-container {
+        background-color: #FFF;
+        color: #333333;
+
+        .main-content {
+
+            .block-1 {
+                .title,
+                .value {
+                    font-size: 16px !important;
+                    margin: 0 !important;
+                }
+            }
+
+            .split-line {
+                padding-bottom: 18px;
+                border-bottom: solid 1px #f3f3f3;
+            }
+
+            .name {
+                font-size: 24px;
+                font-weight: bold;
+                color: #333333;
+            }
+
+            .status {
+                width: 10%;
+                background-color: #1ad25d;
+                border-radius: 2px;
+                padding: 8px;
+                color: #FFF;
+                text-align: center;
+                font-size: 14px;
+                text-transform: capitalize;
+            }
+
+            .property-info {
+
+                .title {
+                    font-size: 12px;
+                    color: #777777;
+                }
+
+                .value {
+                    margin-top: 10px;
+                    font-size: 16px;
+                    color: #222222;
+                }
+            }
+
+            .peak {
+                font-size: 16px;
+                font-weight: bold;
+                color: #222222;
+                padding-bottom: 16px;
+            }
+        }
+        
+        .photo-container {
+            background-color: #f5f5f5;
+        }
+
+        .sub-location-block {
+            background-color: #f5f5f5;
+            margin-top: 24px;
+            margin-bottom: 40px !important;
+
+            .list-title {
+                padding: 0 16px;
+                min-height: 40px;
+            }
+
+            .sub-location-description {
+                font-size: 12px;
+                color: #777777;
+            }
+
+            .mat-expansion-panel {
+                background-color: #f5f5f5;
+                box-shadow: unset;
+                border-bottom: solid 1px #d8d8d8;
+
+                &:last-child {
+                    border-bottom: unset;
+                }
+            }
+
+            .price {
+                background-color: #fff;
+                border-right: solid 2px #cdcdcd;
+                padding: 8px 16px;
+                font-size: 12px;
+
+                &:last-child {
+                    border-right: none;
+                }
+            }
+
+            .order,
+            .sub-location-name {
+                font-size: 12px;
+                font-weight: 600;
+                color: #333333;
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+<mat-toolbar mat-dialog-title class="header-toolbar">
+  <div class="title">
+    {{title}}
+  </div>
+</mat-toolbar>
+<mat-divider></mat-divider>
+<div class="wrapper" fxLayout="column" fxLayoutAlign="center stretch">
+  <div class="confirm-content">{{content}}</div>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px" class="full-width">
+    <button fxFlex="20%" mat-button mat-raised-button matDialogClose>Cancel</button>
+    <button fxFlex="20%" mat-button mat-raised-button color="primary" matDialogClose (click)="submit()" id="submitConfirmationButton">Submit</button>
+  </div>
+</div>

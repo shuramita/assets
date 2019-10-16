@@ -1,0 +1,128 @@
+<div class="background-header">
+  <div>
+    <div class="small-title">FIND THE BEST EVENT VENUE</div>
+    <div class="big-title">Book the venues in Singapore</div>
+  </div>
+
+  <div class="search-bar" fxLayout="row">
+
+    <mat-form-field class="border-right">
+      <mat-select placeholder="Event type" [(ngModel)]="eventType" [ngModelOptions]="{standalone: true}">
+          <mat-optgroup *ngFor="let eventGroup of eventTypes | keyvalue" [label]="eventGroup.key">
+              <mat-option *ngFor="let event of eventGroup.value" [value]="event.id">
+                  {{event.name}}
+              </mat-option>
+          </mat-optgroup>
+
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="border-right">
+      <mat-select placeholder="Select venues" [(ngModel)]="venueType" [ngModelOptions]="{standalone: true}">
+        <mat-option *ngFor="let venue of venueTypes" [value]="venue.id">
+          {{venue.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="border-right input-qty">
+      <div fxLayout="row" fxLayoutAlign="center center" class="quantity buttons_added">
+        <input type="button" value="-" class="minus" (click)="minusNumberOfPax()">
+        <input matInput placeholder="Number of Pax" type="number" step="1" min="1" max="" name="quantity" title="Qty" class="input-text qty text"
+          size="4" pattern="" inputmode="" [(ngModel)]="numberOfPax" readonly>
+        <input type="button" value="+" class="plus" (click)="plusNumberOfPax()">
+      </div>
+    </mat-form-field>
+
+    <mat-datepicker #dateOfCheckInPicker></mat-datepicker>
+    <mat-form-field class="border-right">
+      <input matInput [matDatepicker]="dateOfCheckInPicker" placeholder="Check in" (focus)="dateOfCheckInPicker.open()" (click)="dateOfCheckInPicker.open()"
+        readonly [(ngModel)]="dateOfCheckIn" [ngModelOptions]="{standalone: true}" [max]="dateOfCheckOut">
+      <mat-datepicker-toggle matSuffix [for]="dateOfCheckInPicker"></mat-datepicker-toggle>
+    </mat-form-field>
+
+    <mat-datepicker #dateOfCheckOutPicker></mat-datepicker>
+    <mat-form-field class="padding-r-l">
+      <input matInput [matDatepicker]="dateOfCheckOutPicker" placeholder="Check out" (focus)="dateOfCheckOutPicker.open()" (click)="dateOfCheckOutPicker.open()"
+        readonly [(ngModel)]="dateOfCheckOut" [ngModelOptions]="{standalone: true}" [min]="dateOfCheckIn">
+      <mat-datepicker-toggle matSuffix [for]="dateOfCheckOutPicker"></mat-datepicker-toggle>
+    </mat-form-field>
+    <button type="button" class="btn-search" mat-button (click)="submitSearch()">
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+        <mat-icon>search</mat-icon>
+        <div>Search</div>
+      </div>
+    </button>
+
+  </div>
+
+</div>
+<div class="content">
+  <div>
+    <div class="content-title">Upcoming Events</div>
+    <div class="event-content" fxLayout="row" fxLayoutAlign="space-between center">
+      <div>Aliquam faucibus tempus dui ut pulvinar. Aliquam ac dui in leo mollis mattis.</div>
+      <div>
+        <a fxLayout="row" fxLayoutAlign="start center" style="color: #723bd4">View All
+          <mat-icon color="grey">chevron_right</mat-icon>
+        </a>
+      </div>
+    </div>
+    <mat-grid-list cols="5" rowHeight="240px" gutterSize="16px">
+      <mat-grid-tile colspan="3" rowspan="2">
+        <a class="event-link">
+          <img src="http://demo.realestatedoc.co/upload/photos/1-2019/origin-1548404172-rectangle@3x.jpg" width="100%" height="100%">
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        <a class="event-link">
+          <img src="http://demo.realestatedoc.co/upload/photos/1-2019/origin-1548404283-rectangle@3x.jpg" width="100%" height="100%">
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        <a class="event-link">
+          <img src="http://demo.realestatedoc.co/upload/photos/1-2019/origin-1548406340-rectangle@3x.jpg" width="100%" height="100%">
+        </a>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div class="margin-t-80">
+    <div class="content-title text-align-center">Featured Venues</div>
+    <div class="event-content text-align-center">
+      <div>Aliquam faucibus tempus dui ut pulvinar. Aliquam ac dui in leo mollis mattis.</div>
+    </div>
+    <mat-grid-list cols="3" rowHeight="550px" gutterSize="50px">
+      <mat-grid-tile *ngFor="let venue of venues">
+        <div fxLayout="column" fxLayoutGap="16px">
+          <a routerLink="detail/{{venue.id}}">
+
+            <!-- <img src="http://demo.realestatedoc.co/{{venue.photos[0].values.small.uri}}" width="100%" height="100%"> -->
+            <img *ngIf="!venue.cover" src="{{IMAGE_URL.NO_FLOORPLAN}}" width="100%" height="210px">
+            <img *ngIf="venue.cover" src="{{helper.media(venue.cover.values.small.uri)}}" width="100%" height="210px">
+
+          </a>
+          <div class="color-777">{{venue.building.address}}</div>
+          <div class="grid-tile">{{venue.name}}</div>
+          <div class="color-777 font-size-12">{{venue.type}}</div>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="56px">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+              <mat-icon svgIcon="sqaure"></mat-icon>
+              <div class="color-777 font-size-12">{{venue.size.value}} {{venue.size.unit}}</div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+              <mat-icon svgIcon="chair"></mat-icon>
+              <div class="color-777 font-size-12">50 - 400 seats</div>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="color-777">
+            {{venue.displayDescription}}
+            <a routerLink="detail/{{venue.id}}">more details</a>
+          </div>
+          <div>
+            <a type="button" mat-stroked-button color="primary" class="booking-btn" routerLink="/asset/venue/booking/{{venue.id}}">Booking</a>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

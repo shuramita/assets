@@ -1,0 +1,468 @@
+<div class="asset-add">
+    <mat-toolbar class="header-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <a mat-button href="/asset">
+                <mat-icon>arrow_back</mat-icon>
+            </a>
+            <span class="title">
+                {{title}}
+            </span>
+        </div>
+        <a class="mat-button-logo" mat-button routerLink="/asset">
+            <mat-icon svgIcon="app-logo" class="icon-size" color="primary"></mat-icon>
+        </a>
+        <button class="save-btn" color="primary" mat-raised-button (click)="newAsset()" [disabled]="assetForm.invalid || loading">
+            Save
+        </button>
+    </mat-toolbar>
+    <section *ngIf="loading" class="loading">
+        <mat-spinner color="accent"></mat-spinner>
+    </section>
+    <div *ngIf="!loading" class="main-container" fxLayout="row" fxLayoutAlign="center">
+
+        <div fxLayout="row" fxLayoutGap="5%" fxFlex="80%">
+            <div fxFlex="60" fxLayout="column" fxLayoutGap="20px" [formGroup]="assetForm" novalidate>
+                <div *ngIf="assetTypeId === ASSET_TYPE_BY_ID.ATRIUM_SPACE" class="general-container block-container" fxLayout="column" fxLayoutGap="24px">
+                    <!--Title-->
+                    <div class="block-title">General</div>
+
+                    <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Asset Name">
+                        <mat-error *ngIf="assetForm.controls['name'].invalid"></mat-error>
+                    </mat-form-field>
+
+                    <div fxLayout fxLayoutGap="10px">
+                        <mat-form-field fxFlex="50">
+                            <mat-select placeholder="Asset Type" [(value)]="assetTypeId" [disabled]="true">
+                                <mat-option *ngFor="let assetType of globalData.asset_types" [value]="assetType.id">
+                                    {{assetType.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <!--<mat-form-field fxFlex="33">
+                        <mat-select placeholder="Sub Type">
+                        <mat-option *ngFor="let status of [{value:1,text:'Atrium'}]" [value]="status.value">
+                        {{status.text}}
+                        </mat-option>
+                        </mat-select>
+                        </mat-form-field>-->
+                        <mat-form-field fxFlex="40">
+                            <input matInput formControlName="size" type="number" placeholder="Size">
+                        </mat-form-field>
+                        <mat-form-field fxFlex="10">
+                            <mat-select placeholder="Unit" [(value)]="sizeUnit">
+                                <mat-option *ngFor="let unit of sizeUnits" [value]="unit">
+                                    {{unit}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <mat-form-field>
+                        <textarea rows="5" formControlName="description" mat-autosize matInput placeholder="Description"></textarea>
+                    </mat-form-field>
+                </div>
+
+                <div *ngIf="assetTypeId === ASSET_TYPE_BY_ID.VENUE" class="general-container block-container" fxLayout="column" fxLayoutGap="24px">
+                    <!--Title-->
+                    <div class="block-title">General Info</div>
+
+                    <mat-form-field [ngClass]="{'autocomplete-form-field': selectedVenueTypes.length}">
+                        <input (focus)="resetAutoComplete('venueType')" #venueTypeAutoComplete matInput [matAutocomplete]="auto" formControlName="venueType"
+                            placeholder="Venue Type *">
+                        <mat-icon matSuffix>search</mat-icon>
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="blurAfterSelect('venueType')">
+                            <mat-option [disabled]="option.disabled" (onSelectionChange)="selectAutoComplete($event, option, 'venueType');" *ngFor="let option of displayVenueTypes"
+                                [value]="option.name">
+                                {{option.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <div *ngIf="selectedVenueTypes.length" class="tag-outer-wrapper">
+                        <div fxLayout="row" fxLayoutGap="16px" class="tag-wrapper">
+                            <button *ngFor="let selectedVenueType of selectedVenueTypes;" type="button" mat-button fxLayout="row" fxLayoutAlign="space-between center"
+                                class="tag" (click)="removeAutoComplete(selectedVenueType, 'venueType')">
+                                {{selectedVenueType.name}}
+                                <mat-icon class="tag-close-icon">close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <mat-form-field [ngClass]="{'autocomplete-form-field': selectedEventTypes.length}">
+                        <input #eventTypeAutoComplete (focus)="resetAutoComplete('eventType')" [matAutocomplete]="autoEventType" matInput formControlName="eventType"
+                            placeholder="Event Type *">
+                        <mat-icon matSuffix>search</mat-icon>
+
+                        <mat-autocomplete #autoEventType="matAutocomplete" (optionSelected)="blurAfterSelect('eventType')">
+                            <mat-option [disabled]="option.disabled" (onSelectionChange)="selectAutoComplete($event, option, 'eventType');" *ngFor="let option of displayEventTypes"
+                                [value]="option.name">
+                                {{option.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <div *ngIf="selectedEventTypes.length" class="tag-outer-wrapper">
+                        <div fxLayout="row" fxLayoutGap="16px" class="tag-wrapper">
+                            <button *ngFor="let selectedEventType of selectedEventTypes;" type="button" mat-button fxLayout="row" fxLayoutAlign="space-between center"
+                                class="tag" (click)="removeAutoComplete(selectedEventType, 'eventType')">
+                                {{selectedEventType.name}}
+                                <mat-icon class="tag-close-icon">close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <mat-form-field class="full-width">
+                        <input matInput formControlName="building" placeholder="Building" [disabled]="true">
+                    </mat-form-field>
+
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <mat-form-field fxFlex="49">
+                            <mat-select placeholder="Floor" formControlName="floor_id" required>
+                                <mat-option *ngFor="let floor of globalData.organization.building.floors" [value]="floor.id">
+                                    {{floor.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div fxFlex="49" fxLayout="row" fxLayoutAlign="space-between center">
+                            <mat-form-field fxFlex="68">
+                                <input matInput formControlName="size" type="number" placeholder="Size">
+                            </mat-form-field>
+                            <mat-form-field fxFlex="28">
+                                <mat-select placeholder="Unit" [(value)]="sizeUnit">
+                                    <mat-option *ngFor="let unit of sizeUnits" [value]="unit">
+                                        {{unit}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+                        <div class="status-label-color">Status:</div>
+                        <mat-radio-group formControlName="status">
+                            <mat-radio-button value="published">Publish</mat-radio-button>
+                            <mat-radio-button value="unpublish">Unpublish</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Venue Name" required>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <textarea formControlName="description" mat-autosize matInput placeholder="Description"></textarea>
+                    </mat-form-field>
+                </div>
+
+                <div *ngIf="assetTypeId !== ASSET_TYPE_BY_ID.VENUE" class="locations-container block-container" fxLayout="column" fxLayoutGap="24px">
+                    <div class="block-title">Locations</div>
+                    <mat-form-field>
+                        <mat-select placeholder="Country" [(value)]="country" [disabled]="true">
+                            <mat-option *ngFor="let country of globalData.locations" [value]="country.id">
+                                {{country.value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div fxLayout fxLayoutGap="10px">
+                        <mat-form-field fxFlex="50">
+                            <mat-select placeholder="Mall" [(value)]="building" [disabled]="true">
+                                <mat-option *ngFor="let building of globalData.organization.buildings" [value]="building.id">
+                                    {{building.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="50">
+                            <mat-select placeholder="Floor" formControlName="floor_id">
+                                <mat-option *ngFor="let floor of globalData.organization.building.floors" [value]="floor.id">
+                                    {{floor.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div *ngIf="assetTypeId !== ASSET_TYPE_BY_ID.VENUE" class="sub-location-container block-container" fxLayout="column" fxLayoutGap="24px">
+                    <div class="block-title" fxLayout="row" fxLayoutAlign="space-between center">
+                        Sub Locations
+                        <button mat-button class="add-new-btn" (click)="openAddSubLocationDialog()">Add New</button>
+                    </div>
+                    <mat-card *ngIf="subLocations.length">
+                        <div class="list-title" fxLayout="row">
+                            <span class="order" fxFlex="10" fxLayoutAlign="start center">No. </span>
+                            <span class="sub-location-name" fxFlex="90" fxLayoutAlign="start center">
+                                Sub Location Name
+                            </span>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <mat-accordion>
+                            <mat-expansion-panel *ngFor="let subLocation of subLocations; let i = index">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <span class="order" fxFlex="10" fxLayoutAlign="start center">{{i + 1}}</span>
+                                        <span class="sub-location-name" fxFlex="90" fxLayoutAlign="start center">
+                                            {{subLocation.name}}
+                                        </span>
+                                    </mat-panel-title>
+
+                                </mat-expansion-panel-header>
+                                <div fxLayout fxFlexOffset="10" fxFlex="90">
+                                    <div class="price" fxFlex="33">
+                                        <div class="font-weight-bold">Normal</div>
+                                        <ng-container *ngFor="let price of subLocation.normalPrices">
+                                            <div>{{price.id | pricePipe}}: S$
+                                                <strong>{{price.value}}</strong>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                    <div class="price" fxFlex="33">
+                                        <div class="font-weight-bold">Off Peak</div>
+                                        <ng-container *ngFor="let price of subLocation.peakPrices">
+                                            <div>{{price.id | pricePipe}}: S$
+                                                <strong>{{price.value}}</strong>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                    <div class="price" fxFlex="33">
+                                        <div class="font-weight-bold">Off Peak</div>
+                                        <ng-container *ngFor="let price of subLocation.offPeakPrices">
+                                            <div>{{price.id | pricePipe}}: S$
+                                                <strong>{{price.value}}</strong>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </mat-card>
+
+                </div>
+
+                <div class="price-block-container block-container" fxLayout="column" fxLayoutGap="32px">
+                    <div class="block-title">Price & Tax</div>
+                    <mat-accordion>
+                        <mat-expansion-panel *ngIf="normalPriceList.length">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title class="header-block" fxLayout="row" fxLayoutAlign="start center">
+                                    Normal
+                                    <mat-icon>info_outline</mat-icon>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-card class="content-block" formArrayName="normalPrices">
+                                <div class="peak-header" fxLayout="row" fxLayoutGap="5px">
+                                    <div class="order" fxFlex="10">No</div>
+                                    <div class="sub-location-name" fxFlex="40">
+                                        Period
+                                    </div>
+                                    <div class="sub-location-name" fxFlex="35">
+                                        Price
+                                    </div>
+                                    <div fxFlex="5">
+                                    </div>
+                                </div>
+                                <mat-divider></mat-divider>
+                                <div class="peak-list" fxLayout="column">
+                                    <ng-container *ngFor="let price of assetForm.controls['normalPrices']['controls']; let i = index">
+                                        <div class="peak-list-item" fxLayout="row" fxLayoutGap="5px" [formGroupName]="i">
+                                            <div class="order" fxFlex="10" fxFlexAlign="center">{{i + 1}}</div>
+                                            <mat-form-field fxFlex="40">
+                                                <mat-select placeholder="Time Period" formControlName="id">
+                                                    <mat-option [disabled]="pricePeriod.disabled" (onSelectionChange)="disableOption(i, i2, 'normal', $event)" *ngFor="let pricePeriod of normalPriceList; let i2 = index"
+                                                        [value]="pricePeriod.id">
+                                                        {{pricePeriod.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <mat-form-field fxFlex="40">
+                                                <input matInput type="number" placeholder="Price" formControlName="value">
+                                            </mat-form-field>
+                                            <div class="delete-row" (click)="deletePrice(i, 'normal')" fxFlexAlign="center" fxFlex="5">
+                                                <mat-icon>close</mat-icon>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                                <button mat-button class="add-new-btn" (click)="addPrice('normal')">Add New</button>
+                            </mat-card>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel *ngIf="peakPriceList.length">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title class="header-block" fxLayout="row" fxLayoutAlign="start center">
+                                    Peak
+                                    <mat-icon>info_outline</mat-icon>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-card class="content-block" formArrayName="peakPrices">
+                                <div class="peak-header" fxLayout="row">
+                                    <div class="order" fxFlex="10">No</div>
+                                    <div class="sub-location-name" fxFlex="70">
+                                        Peak Period
+                                    </div>
+                                    <div class="sub-location-name" fxFlex="20">
+                                        Price
+                                    </div>
+                                </div>
+                                <mat-divider></mat-divider>
+                                <div class="peak-list" fxLayout="column">
+                                    <ng-container *ngFor="let price of assetForm.controls['peakPrices']['controls']; let i = index">
+                                        <div class="peak-list-item" fxLayout="row" fxLayoutGap="5px" [formGroupName]="i">
+                                            <div class="order" fxFlex="10" fxFlexAlign="center">{{i + 1}}</div>
+                                            <mat-form-field fxFlex="40">
+                                                <mat-select placeholder="Time Period" formControlName="id">
+                                                    <mat-option [disabled]="pricePeriod.disabled" (onSelectionChange)="disableOption(i, i2, 'peak', $event)" *ngFor="let pricePeriod of peakPriceList; let i2 = index"
+                                                        [value]="pricePeriod.id">
+                                                        {{pricePeriod.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <mat-form-field fxFlex="40">
+                                                <input matInput type="number" placeholder="Price" formControlName="value">
+                                            </mat-form-field>
+                                            <div class="delete-row" (click)="deletePrice(i, 'peak')" fxFlexAlign="center" fxFlex="5">
+                                                <mat-icon>close</mat-icon>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                                <button mat-button class="add-new-btn" (click)="addPrice('peak')">Add New</button>
+                            </mat-card>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel *ngIf="offPeakPriceList.length">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title class="header-block" fxLayout="row" fxLayoutAlign="start center">
+                                    Off Peak
+                                    <mat-icon>info_outline</mat-icon>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-card class="content-block" formArrayName="offPeakPrices">
+                                <div class="peak-header" fxLayout="row">
+                                    <div class="order" fxFlex="10">No</div>
+                                    <div class="sub-location-name" fxFlex="70">
+                                        Off Peak Period
+                                    </div>
+                                    <div class="sub-location-name" fxFlex="20">
+                                        Price
+                                    </div>
+                                </div>
+                                <mat-divider></mat-divider>
+                                <div class="peak-list" fxLayout="column">
+                                    <ng-container *ngFor="let price of assetForm.controls['offPeakPrices']['controls']; let i = index">
+                                        <div class="peak-list-item" fxLayout="row" fxLayoutGap="5px" [formGroupName]="i">
+                                            <div class="order" fxFlex="10" fxFlexAlign="center">{{i + 1}}</div>
+                                            <mat-form-field fxFlex="40">
+                                                <mat-select placeholder="Time Period" formControlName="id">
+                                                    <mat-option [disabled]="pricePeriod.disabled" (onSelectionChange)="disableOption(i, i2, 'offPeak', $event)" *ngFor="let pricePeriod of offPeakPriceList; let i2 = index"
+                                                        [value]="pricePeriod.id">
+                                                        {{pricePeriod.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <mat-form-field fxFlex="40">
+                                                <input matInput type="number" placeholder="Price" formControlName="value">
+                                            </mat-form-field>
+                                            <div class="delete-row" (click)="deletePrice(i, 'offPeak')" fxFlexAlign="center" fxFlex="5">
+                                                <mat-icon>close</mat-icon>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                                <button mat-button class="add-new-btn" (click)="addPrice('offPeak')">Add New</button>
+                            </mat-card>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+
+                    <div fxLayout="column">
+                        <div class="header-block">
+                            <div>Taxes</div>
+                        </div>
+                        <mat-form-field fxFlex="20">
+                            <mat-select placeholder="Tax inclusive" formControlName="tax_id">
+                                <mat-option *ngFor="let tax of globalData.organization.taxes" [value]="tax.id">
+                                    {{tax.description}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div *ngIf="assetTypeId === ASSET_TYPE_BY_ID.VENUE" class="custom-field-container block-container" fxLayout="column" fxLayoutGap="16px">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxFlex="20" class="block-title">Amenity</div>
+                        <div fxFlex="80">
+                            <mat-form-field [ngClass]="{'autocomplete-form-field': selectedAmenities.length}" class="full-width">
+                                <input #amenityAutoComplete (focus)="resetAutoComplete('amenity')" [matAutocomplete]="autoAmenity" matInput formControlName="amenity"
+                                    placeholder="Amenity">
+                                <mat-icon matSuffix>search</mat-icon>
+
+                                <mat-autocomplete #autoAmenity="matAutocomplete" (optionSelected)="blurAfterSelect('amenity')">
+                                    <mat-option [disabled]="option.disabled" (onSelectionChange)="selectAutoComplete($event, option, 'amenity');" *ngFor="let option of displayAmenities"
+                                        [value]="option.name">
+                                        {{option.name}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+                    <div fxLayoutAlign="space-between center" fxLayout="row" *ngFor="let selectedAmenity of selectedAmenities;">
+                        <div [ngSwitch]="selectedAmenity.system_id">
+                            <mat-icon fxFlex="10" *ngSwitchCase="'wifi'">wifi</mat-icon>
+                            <mat-icon fxFlex="10" *ngSwitchCase="'air-conditioning'">devices_other</mat-icon>
+                            <mat-icon fxFlex="10" *ngSwitchCase="'smoking-area'">smoking_rooms</mat-icon>
+                            <mat-icon fxFlex="10" *ngSwitchCase="'projector-tv'">tv</mat-icon>
+                            <mat-icon fxFlex="10" *ngSwitchCase="'bar-tab'">free_breakfast</mat-icon>
+                            <mat-icon fxFlex="10" *ngSwitchCase="'bring-your-own-stuff'">devices_other</mat-icon>
+                            <mat-icon fxFlex="10" *ngSwitchCase="'full-bar'">free_breakfast</mat-icon>
+                            <mat-icon fxFlex="10" *ngSwitchCase="'microphone'">keyboard_voice</mat-icon>
+                            <mat-icon fxFlex="10" *ngSwitchCase="'pool'">pool</mat-icon>
+                            <mat-icon fxFlex="10" *ngSwitchCase="'private-room'">room</mat-icon>
+                            <mat-icon fxFlex="10" *ngSwitchCase="'stage'">devices_other</mat-icon>
+                            <mat-icon fxFlex="10" *ngSwitchDefault>devices_other</mat-icon>
+                        </div>
+                        <div fxFlex="90" class="amenity-content" fxLayout="row" fxLayoutAlign="space-between center">
+                            <div>
+                                {{selectedAmenity.name}}
+                            </div>
+                            <button (click)="removeAutoComplete(selectedAmenity, 'amenity')" type="button" class="close-button" mat-icon-button>
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="custom-field-container block-container" fxLayout="column" fxLayoutGap="32px">
+                    <div class="block-title" fxLayout="row" fxLayoutAlign="space-between center">
+                        Extra Data Fields
+                        <button mat-button class="add-new-btn" (click)="openCustomFieldDialog()">Add New</button>
+                    </div>
+                    <!--<div class="description-block"></div>-->
+                    <mat-card *ngIf="customFields.length">
+                        <div class="list-title" fxLayout="row" fxLayoutGap="5px">
+                            <span class="order" fxFlex="10" fxLayoutAlign="start center">No. </span>
+                            <span class="sub-location-name" fxFlex="40" fxLayoutAlign="start center">
+                                Field Name
+                            </span>
+                            <span class="sub-location-name" fxFlex="40" fxLayoutAlign="start center">
+                                Field Value
+                            </span>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="list-field" fxLayout="row" fxLayoutGap="5px" *ngFor="let customField of customFields; let i = index">
+                            <span class="order" fxFlex="10" fxLayoutAlign="start center">{{i + 1}}</span>
+                            <span class="sub-location-name" fxFlex="40" fxLayoutAlign="start center">
+                                {{customField.id | fieldPipe}}
+                            </span>
+                            <span class="sub-location-name" fxFlex="40" fxLayoutAlign="start center">
+                                {{customField.value}}
+                            </span>
+                        </div>
+                    </mat-card>
+                </div>
+
+            </div>
+            <div fxFlex="40" fxLayout="column" fxLayoutGap="10px">
+                <app-upload-photo [uploadedFiles]="existingCover" [isMultiple]="false" title="Cover Photo" *ngIf="assetTypeId === ASSET_TYPE_BY_ID.VENUE" (changedPhoto)="onChangedPhotos($event, 'cover')"></app-upload-photo>
+                <app-upload-photo [uploadedFiles]="existingPhotos" #assetPhotos [existingPhotos]="existingPhotos" [isMultiple]="true" title="Asset Photo" (changedPhoto)="onChangedPhotos($event)"></app-upload-photo>
+            </div>
+        </div>
+    </div>
+</div>

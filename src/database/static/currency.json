@@ -1,0 +1,26 @@
+[
+  {
+    "id":"VND",
+    "value":"Vietnam Dong"
+  },
+  {
+    "id":"SGD",
+    "value":"Singapore Dollar"
+  },
+  {
+    "id":"USD",
+    "value":"US Dollar"
+  },
+  {
+    "id":"EUR",
+    "value":"Euro"
+  },
+  {
+    "id":"AUD",
+    "value":"Australian Dollar"
+  },
+  {
+    "id":"CNY",
+    "value":"Renminbi (Yuan)"
+  }
+]

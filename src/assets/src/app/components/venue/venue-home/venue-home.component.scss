@@ -1,0 +1,218 @@
+.background-header {
+    height: 640px; 
+    text-align: center; 
+    display: grid;
+    align-items: center;
+    background-image: url('http://demo.realestatedoc.co/upload/photos/1-2019/origin-1548403165-rectangle@2x.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+
+    .search-bar {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba(0, 0, 0, 0.2);
+        color: #ffffff;
+        height: 120px;
+        text-align: center;
+
+        mat-form-field {
+            display: grid;
+            align-items: center;
+            height: 120px;
+
+            /deep/.mat-form-field-wrapper {
+                padding-bottom: 0;
+            }
+        }
+
+        /deep/ .mat-select-arrow{
+            color: #ffffff;
+        }
+        /deep/ .mat-form-field-appearance-legacy .mat-form-field-label{
+            color: #ffffff;
+        } 
+        /deep/ .mat-select-value{
+            color: #ffffff;
+            font-size: 20px;
+        }
+        
+        /deep/ .mat-form-field-appearance-legacy .mat-form-field-underline {
+            display: none;
+        }
+
+        /deep/ .mat-datepicker-toggle-default-icon {
+            width: 28px;
+        }
+
+        .input-qty {                 
+            /deep/ .mat-form-field-label {
+                text-align: center;
+            }
+        }
+        .btn-search {
+            height: 100%;
+            color: #ffffff;
+            width: 210px;
+            background-color: #723bd4;
+        }
+
+        mat-datepicker-toggle {
+            color: #ffffff;
+        }
+
+        .border-right {
+            padding: 0 16px;
+            position: relative;
+        }
+        
+        .border-right::after {
+            content : "";
+            position: absolute;
+            right: 0;
+            width: 1px;
+            height: 50%;
+            background: #ffffff;
+            opacity: 0.4;
+        }
+    }
+}
+
+.padding-r-l {
+    padding: 0 16px;
+}
+
+.small-title {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.big-title {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: Playfair Display;
+    font-size: 56px;
+    font-weight: bold;
+    line-height: 1.14;
+    color: #ffffff;
+}
+
+.content {
+    padding: 80px 210px;
+
+    .content-title {
+        font-size: 40px;
+        line-height: 1.6;
+        color: #222222;
+        font-family: Playfair Display;
+    }
+
+    .event-content {
+        margin: 32px 0;
+    }
+}
+.text-align-center {
+    text-align: center;
+}
+
+.margin-t-80 {
+    margin-top: 80px;
+}
+
+.booking-btn {
+    height: 40px;
+    width: 120px;
+    border-color: #723bd4;
+}
+
+.color-777 {
+    color: #777777;
+}
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.grid-tile {
+    font-size: 20px;
+    font-weight: 500;
+    color: #222222;
+}
+
+.event-link {
+    width: 99%;
+    height: 99%;
+}
+
+.event-link:hover {
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* -- quantity box -- */
+
+.quantity {
+    display: inline-block; 
+}
+   
+   .quantity .input-text.qty {
+    width: 50px;
+    height: 20px;
+    padding: 0;
+    text-align: center;
+    border: none;
+    font-size: 20px;
+   }
+   
+   .quantity.buttons_added {
+    text-align: center;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: top; }
+   
+   .quantity.buttons_added input {
+    display: inline-block;
+    margin: 0;
+    vertical-align: top;
+    box-shadow: none;
+   }
+   
+   .quantity.buttons_added .minus,
+   .quantity.buttons_added .plus {
+    
+    height: 28px;
+    width: 28px;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 20px;
+}
+   
+//    .quantity.buttons_added .minus {
+//     border-right: 0; }
+   
+//    .quantity.buttons_added .plus {
+//     border-left: 0; }
+   
+   .quantity.buttons_added .minus:hover,
+   .quantity.buttons_added .plus:hover {
+    background: #eeeeee; }
+   
+   .quantity input::-webkit-outer-spin-button,
+   .quantity input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0; }
+    
+    .quantity.buttons_added .minus:focus,
+   .quantity.buttons_added .plus:focus {
+    outline: none; 
+}
+   

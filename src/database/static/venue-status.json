@@ -1,0 +1,5 @@
+[
+  {"id":"draft", "name":"Draft"},
+  {"id":"publish", "name":"Publish" },
+  {"id":"unpublish", "name":"Unpublish" }
+]

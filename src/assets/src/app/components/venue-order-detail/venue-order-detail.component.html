@@ -1,0 +1,98 @@
+<div class="wrapper">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="wraper-title">Order details</span>
+    <div fxLayoutGap="16px" *ngIf="orderDetail?.status !== 'approved'">
+      <button mat-raised-button type="button" (click)="openConfirmationDialog('reject')" *ngIf="orderDetail?.status !== 'rejected'" id="rejectOrderButton">Reject</button>
+      <button mat-raised-button type="button" (click)="openConfirmationDialog('approve')" id="approveOrderButton">Approve</button>
+    </div>
+    <div *ngIf="orderDetail?.status === 'approved'">
+      <a mat-raised-button type="button" color="primary" href="/contract/generate-from-asset?id={{orderId}}">Generate Contract</a>
+    </div>
+  </div>
+
+  <div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
+    <div class="left-side" fxFlex="30" fxLayout="column" fxLayoutGap="16px">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <b class="title">Tenant Info</b>
+        <div class="status">{{orderDetail?.status}}</div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="sub-title">Full name</span>
+        <div>{{orderDetail?.customer.name}}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="sub-title">Mobile Phone No.</span>
+        <div>{{orderDetail?.customer.phone_number}}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="sub-title">Email</span>
+        <div>{{orderDetail?.customer.email}}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="column" fxLayoutAlign="start start">
+        <span class="sub-title">ETH address</span>
+        <div class="word-break">0x4092678e4E78230F46A1534C0fbc8fA39780892B</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="sub-title">Company</span>
+        <div>{{orderDetail?.customer.company}}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="sub-title">Trade</span>
+        <div>{{orderDetail?.customer.trade}}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="sub-title">UEN Number</span>
+        <div>{{orderDetail?.customer.unit_number}}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="sub-title">Type of Merchandise</span>
+        <div>{{orderDetail?.customer.type_of_merchandise}}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <b class="title margin-t-b-24"> Rental Info</b>
+      <div fxLayout="column" fxLayoutAlign="start start">
+        <span class="sub-title">Location</span>
+        <div class="word-break">B1C - Party Room</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="sub-title">Period</span>
+        <div>Feb 20 2018 - March 20 2018</div>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="right-side" fxFlex="70">
+      <b class="title">Event Description</b>
+      <div class="event-description">
+        {{orderDetail?.description}}
+      </div>
+      <b class="title">Photo of Event</b>
+      <div class="margin-t-b-24">
+        <mat-grid-list cols="5" rowHeight="200px" gutterSize="8px">
+          <mat-grid-tile colspan="3" rowspan="2">
+            <a class="event-link">
+              <img src="http://demo.realestatedoc.co/upload/photos/1-2019/origin-1548404172-rectangle@3x.jpg" width="100%" height="100%">
+            </a>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2">
+            <a class="event-link">
+              <img src="http://demo.realestatedoc.co/upload/photos/1-2019/origin-1548404283-rectangle@3x.jpg" width="100%" height="100%">
+            </a>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2">
+            <a class="event-link">
+              <img src="http://demo.realestatedoc.co/upload/photos/1-2019/origin-1548406340-rectangle@3x.jpg" width="100%" height="100%">
+            </a>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+  </div>
+</div>

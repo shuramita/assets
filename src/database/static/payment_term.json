@@ -1,0 +1,10 @@
+[
+  {"id":1,"code":"NET15","value":"NET 15","description":"Net 15","number_of_date":"15"},
+  {"id":2,"code":"NET30","value":"NET 30","description":"Net 30","number_of_date":"30"},
+  {"id":3,"code":"NET45","value":"NET 45","description":"Net 45","number_of_date":"45"},
+  {"id":4,"code":"NET60","value":"NET 60","description":"Net 60","number_of_date":"60"},
+  {"id":5,"code":"DEM","value":"Due end of the month","description":"Due end of the month"},
+  {"id":6,"code":"DENM","value":"Due end of next month","description":"Due end of next month"},
+  {"id":7,"code":"CUST","value":"Customize due date","description":"Due date customized by invoice maker"},
+  {"id":8,"code":"DOR","value":"Due on receipt","description":"Due on receipt","number_of_date":0}
+]

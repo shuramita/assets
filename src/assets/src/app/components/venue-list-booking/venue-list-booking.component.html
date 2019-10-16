@@ -1,0 +1,134 @@
+<div class="wrapper">
+  <span class="title">New Orders</span>
+  <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px" class="content">
+    <div class="left-side" fxFlex="25">
+      <div class="select-building">
+        <mat-form-field fxFlex="100">
+          <mat-select [(ngModel)]="selectedBuilding">
+            <mat-option *ngFor="let building of buildings" [value]="building.key">
+              {{building.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <div class="sub-title">{{building?.name}}</div>
+        <div class="floor">
+          <mat-nav-list>
+            <mat-list-item
+            *ngFor="let floor of building?.floors" [ngClass]="{'floor--active': floor.id == _selectingFloorId}"
+            (click)="onSelectFloor(floor.id)">
+              <div class="floor-content" fxLayout="row" fxLayoutAlign="space-between start">
+                <div fxLayout="column" fxLayoutGap="8px">
+                  <div [ngClass]="{'floor-label--active': floor.id == _selectingFloorId}">{{floor.name}}</div>
+                  <div class="color-777 font-size-12">
+                    {{building?.name}}
+                  </div>
+                </div>
+                <div class="circle-label" [ngClass]="{'circle-label--active': floor.id == _selectingFloorId}">28</div>
+              </div>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-nav-list>
+        </div>
+      </div>
+    </div>
+    <div class="right-side" fxFlex="75">
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div>All New Orders </div>
+            <div class="circle-label tab-label-active">{{listBookings?.length}}</div>
+          </ng-template>
+          <div class="content-new-orders" fxLayout="row wrap" fxLayoutAlign="space-between start">
+            <div class="grid-wrapper order" *ngFor="let order of listBookings" (mouseenter)="mouseEnter(order.id) " (mouseleave)="mouseLeave(order.id)"
+              [ngClass]="'border-left--' + order?.status" fxFlex="31" fxLayout="column" fxLayoutAlign="start start">
+              <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+                <div>{{order?.name}}</div>
+                <div>{{order?.asset.name}}</div>
+              </div>
+              <div class="margin-t-24" style="line-height: 1.8">
+                <div>
+                  <span class="color-777">Customer:</span> {{order?.customer.first_name}} {{order?.customer.last_name}}</div>
+                <div>
+                  <span class="color-777">Total fee:</span> S$ 3,500.00</div>
+
+              </div>
+              <div [fxShow]="order.status !== 'approved'" class="margin-t-16 status status--pending">
+                Pending Approval
+              </div>
+              <div [fxShow]="order.status === 'approved'" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px" class="margin-t-16 status status--approved">
+                <mat-icon>check</mat-icon> Approval
+              </div>
+              <div class="divbtn full-width" [ngClass]="'divbtn--' + order.id">
+                <button type="button" class="full-width btn-detail" mat-raised-button color="primary" (click)="goToDetailPage(order.id);">View Details</button>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div>Pending Approval </div>
+            <div class="circle-label tab-label-active">{{listBookingsPending?.length}}</div>
+          </ng-template>
+          <div class="content-new-orders" fxLayout="row wrap" fxLayoutAlign="space-between start">
+            <div class="grid-wrapper order" *ngFor="let order of listBookingsPending" (mouseenter)="mouseEnter(order.id) " (mouseleave)="mouseLeave(order.id)"
+              [ngClass]="'border-left--' + order?.status" fxFlex="31" fxLayout="column" fxLayoutAlign="start start">
+              <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+                <div>{{order?.name}}</div>
+                <div>{{order?.asset.name}}</div>
+              </div>
+              <div class="margin-t-24" style="line-height: 1.8">
+                <div>
+                  <span class="color-777">Customer:</span> {{order?.customer.first_name}} {{order?.customer.last_name}}</div>
+                <div>
+                  <span class="color-777">Total fee:</span> S$ 3,500.00</div>
+
+              </div>
+              <div [fxShow]="order.status !== 'approved'" class="margin-t-16 status status--pending">
+                Pending Approval
+              </div>
+              <div [fxShow]="order.status === 'approved'" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px" class="margin-t-16 status status--approved">
+                <mat-icon>check</mat-icon> Approval
+              </div>
+              <div class="divbtn full-width" [ngClass]="'divbtn--' + order.id">
+                <button type="button" class="full-width btn-detail" mat-raised-button color="primary" (click)="goToDetailPage(order.id);">View Details</button>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div>Approval </div>
+            <div class="circle-label tab-label-active">{{listBookingsApproval?.length}}</div>
+          </ng-template>
+          <div class="content-new-orders" fxLayout="row wrap" fxLayoutAlign="space-between start">
+            <div class="grid-wrapper order" *ngFor="let order of listBookingsApproval" (mouseenter)="mouseEnter(order.id) " (mouseleave)="mouseLeave(order.id)"
+              [ngClass]="'border-left--' + order?.status" fxFlex="31" fxLayout="column" fxLayoutAlign="start start">
+              <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+                <div>{{order?.name}}</div>
+                <div>{{order?.asset.name}}</div>
+              </div>
+              <div class="margin-t-24" style="line-height: 1.8">
+                <div>
+                  <span class="color-777">Customer:</span> {{order?.customer.first_name}} {{order?.customer.last_name}}</div>
+                <div>
+                  <span class="color-777">Total fee:</span> S$ 3,500.00</div>
+
+              </div>
+              <div [fxShow]="order.status !== 'approved'" class="margin-t-16 status status--pending">
+                Pending Approval
+              </div>
+              <div [fxShow]="order.status === 'approved'" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px" class="margin-t-16 status status--approved">
+                <mat-icon>check</mat-icon> Approval
+              </div>
+              <div class="divbtn full-width" [ngClass]="'divbtn--' + order.id">
+                <button type="button" class="full-width btn-detail" (click)="goToDetailPage(order.id);" mat-raised-button color="primary">View Details</button>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

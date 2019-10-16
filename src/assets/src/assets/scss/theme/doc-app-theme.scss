@@ -1,0 +1,171 @@
+@import '~@angular/material/theming';
+@import 'data-table-theme';
+@import 'paging-bar-theme';
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+
+$mat-pink-custom: (
+    50: #EDE7F6,
+    100: #D1C4E9,
+    200: #B39DDB,
+    300: #9575CD,
+    400: #7E57C2,
+    500: #6D4CA7,
+    600: #5E35B1,
+    700: #512DA8,
+    800: #4527A0,
+    900: #311B92,
+    A100: #B388FF,
+    A200: #7C4DFF,
+    A400: #651FFF,
+    A700: #6200EA,
+    contrast:
+    (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: $white-87-opacity,
+        900: $white-87-opacity,
+        A100: $black-87-opacity,
+        A200: white,
+        A400: white,
+        A700: white
+    )
+);
+
+$mat-blue-custom: (
+    50: #E3F2FD,
+    100: #BBDEFB,
+    200: #90CAF9,
+    300: #64B5F6,
+    400: #42A5F5,
+    500: #0085F9,
+    600: #1E88E5,
+    700: #1976D2,
+    800: #1565C0,
+    900: #0D47A1,
+    A100: #82B1FF,
+    A200: #448AFF,
+    A400: #2979FF,
+    A700: #2962FF,
+    contrast:
+    (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: $white-87-opacity,
+        900: $white-87-opacity,
+        A100: $black-87-opacity,
+        A200: white,
+        A400: white,
+        A700: white
+    )
+);
+
+$mat-red-custom: (
+    50: #FEF4F4,
+    100: #FBD3D5,
+    200: #F8A7AB,
+    300: #F47C81,
+    400: #F15057,
+    500: #FB1927,
+    600: #DD242C,
+    700: #CE242A,
+    800: #BF2228,
+    900: #B12026,
+    A100: #FF8A80,
+    A200: #FF5252,
+    A400: #FF1744,
+    A700: #D50000,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: $white-87-opacity,
+        900: $white-87-opacity,
+        A100: $black-87-opacity,
+        A200: white,
+        A400: white,
+        A700: white,
+    )
+);
+
+$mat-purple-custom: (
+    50: #F3E5F5,
+    100: #E1BEE7,
+    200: #CE93D8,
+    300: #BA68C8,
+    400: #AB47BC,
+    500: #723bd4, // Only custom here
+    600: #8E24AA,
+    700: #7B1FA2,
+    800: #6A1B9A,
+    900: #4A148C,
+    A100: #EA80FC,
+    A200: #E040FB,
+    A400: #D500F9,
+    A700: #AA00FF,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: $white-87-opacity,
+        900: $white-87-opacity,
+        A100: $black-87-opacity,
+        A200: white,
+        A400: white,
+        A700: white,
+    )
+);
+
+$doc-app-primary: mat-palette($mat-purple-custom);
+// $doc-app-accent: mat-palette($mat-blue-custom);
+$doc-app-accent: mat-palette($mat-purple);
+
+// The warn palette is optional (defaults to red).
+$doc-app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$doc-app-theme: mat-light-theme(
+        $doc-app-primary,
+        $doc-app-accent,
+        $doc-app-warn
+);
+
+// $barlow: mat-typography-config($font-family: 'Barlow');
+// Include theme styles for common and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($doc-app-theme);
+@include td-data-table-theme($doc-app-theme);
+@include td-paging-bar-theme($doc-app-theme);
+// @include angular-material-typography($barlow);

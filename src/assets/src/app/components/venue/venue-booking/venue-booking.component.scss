@@ -1,0 +1,87 @@
+.wrapper {
+    padding: 80px 210px;
+}
+
+.margin-t-b-24 {
+    margin: 24px 0;
+}
+
+.step-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #222222;
+}
+
+.color-777 {
+    color: #777777;
+}
+
+.div-btn-next {
+    text-align: right;
+}
+
+mat-expansion-panel {
+    box-shadow: none !important;
+    margin-bottom: 24px;
+
+    mat-expansion-panel-header {
+        height: 48px !important;
+        border-radius: 2px;
+        background-color: #f2f2f2 !important;
+    }
+
+    mat-expansion-panel-header:hover {
+        height: 48px !important;
+        border-radius: 2px;
+        background-color: #f2f2f2 !important;
+    }
+}
+
+.position-icon-expansion-header {
+    width: 100%;
+    text-align: right;
+}
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.left-side {
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+    background-color: #ffffff; 
+    padding: 16px;
+}
+
+.right-side {
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+
+    /deep/.mat-horizontal-stepper-header{
+        pointer-events: none !important;
+    }
+}
+
+.congratulations {
+    padding: 56px;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.loading {
+    display: flex;
+    flex-direction: row;
+    place-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+
+    div {
+        position: absolute;
+    }
+}

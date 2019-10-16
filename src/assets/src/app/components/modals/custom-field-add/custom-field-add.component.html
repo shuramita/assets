@@ -1,0 +1,30 @@
+<mat-toolbar mat-dialog-title class="header-toolbar mat-toolbar-single-row" fxLayout="row"
+             fxLayoutAlign="space-between center">
+    <div class="title">
+        Add Custom Field
+    </div>
+    <button class="close-btn" matDialogClose mat-button>
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-divider></mat-divider>
+<div class="main-content" fxLayout="column" fxLayoutAlign="center" [formGroup]="customFieldForm">
+    <mat-form-field>
+        <mat-select placeholder="Field" formControlName="id" (selectionChange)="changeField($event)">
+            <mat-option *ngFor="let field of customFields"
+                        [value]="field.id">
+                {{field.title}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <ng-container [ngSwitch]="fieldType">
+            <input *ngSwitchCase="'number'" matInput formControlName="value" type="number" placeholder="Value">
+            <textarea *ngSwitchCase="'text'" matInput formControlName="value" placeholder="Value"></textarea>
+            <input *ngSwitchDefault matInput formControlName="value" type="text" placeholder="Value">
+        </ng-container>
+    </mat-form-field>
+    <button mat-button mat-raised-button color="primary" matDialogClose (click)="submit()"
+            [disabled]="customFieldForm.invalid">SUBMIT
+    </button>
+</div>

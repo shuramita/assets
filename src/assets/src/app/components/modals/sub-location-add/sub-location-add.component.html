@@ -1,0 +1,176 @@
+<mat-toolbar mat-dialog-title class="header-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="title">
+        Add Sub Locations
+    </div>
+    <button class="close-btn" matDialogClose mat-button>
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-divider></mat-divider>
+<mat-dialog-content>
+    <div class="main-content" fxLayout="row" fxLayoutAlign="center">
+        <div fxFlex fxLayout="column" fxLayoutGap="20px" [formGroup]="subLocationForm">
+            <div class="general-container block-container" fxLayout="column">
+                <div fxLayout fxLayoutGap="10px">
+                    <mat-form-field fxFlex="40">
+                        <input matInput formControlName="name" type="text" placeholder="Title">
+                    </mat-form-field>
+                    <mat-form-field fxFlex="40">
+                        <input matInput formControlName="size" type="number" placeholder="Size">
+                    </mat-form-field>
+                    <mat-form-field fxFlex="10">
+                        <mat-select placeholder="Unit" [(value)]="sizeUnit">
+                            <mat-option *ngFor="let unit of sizeUnits" [value]="unit">
+                                {{unit}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <mat-form-field>
+                        <textarea formControlName="description" mat-autosize matInput
+                                  placeholder="Description"></textarea>
+                </mat-form-field>
+            </div>
+
+            <div class="price-block-container" fxLayout="column" fxLayoutGap="32px" formArrayName="normalPrices">
+                <div class="price-block">
+                    <div class="header-block" fxLayout="row" fxLayoutAlign="start center">
+                        Normal
+                        <mat-icon>info_outline</mat-icon>
+                    </div>
+                    <div class="content-block">
+                        <div class="peak-header" fxLayout="row" fxLayoutGap="5px">
+                            <div class="order" fxFlex="10">No</div>
+                            <div class="sub-location-name" fxFlex="40">
+                                Period
+                            </div>
+                            <div class="sub-location-name" fxFlex="35">
+                                Price
+                            </div>
+                            <div fxFlex="5">
+                            </div>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="peak-list" fxLayout="column">
+                            <ng-container
+                                *ngFor="let price of subLocationForm.controls['normalPrices']['controls']; let i = index">
+                                <div class="peak-list-item" fxLayout="row" fxLayoutGap="5px" [formGroupName]="i">
+                                    <div class="order" fxFlex="10" fxFlexAlign="end">{{i + 1}}</div>
+                                    <mat-form-field fxFlex="40">
+                                        <mat-select placeholder="Time Period" formControlName="id">
+                                            <mat-option *ngFor="let pricePeriod of normalPriceList"
+                                                        [value]="pricePeriod.id">
+                                                {{pricePeriod.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field fxFlex="40">
+                                        <input matInput type="number" placeholder="Price" formControlName="value">
+                                    </mat-form-field>
+                                    <div class="delete-row" (click)="deleteNormalPrice(i)" fxFlexAlign="end" fxFlex="5">
+                                        <mat-icon>close</mat-icon>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <button mat-button class="add-new-btn" (click)="addNormalPrice()">Add New</button>
+                    </div>
+                </div>
+            </div>
+            <div class="price-block-container" fxLayout="column" fxLayoutGap="32px" formArrayName="peakPrices">
+                <div class="price-block">
+                    <div class="header-block" fxLayout="row" fxLayoutAlign="start center">
+                        Peak
+                        <mat-icon>info_outline</mat-icon>
+                    </div>
+                    <div class="content-block">
+                        <div class="peak-header" fxLayout="row">
+                            <div class="order" fxFlex="10">No</div>
+                            <div class="sub-location-name" fxFlex="70">
+                                Peak Period
+                            </div>
+                            <div class="sub-location-name" fxFlex="20">
+                                Price
+                            </div>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="peak-list" fxLayout="column">
+                            <ng-container
+                                *ngFor="let price of subLocationForm.controls['peakPrices']['controls']; let i = index">
+                                <div class="peak-list-item" fxLayout="row" fxLayoutGap="5px" [formGroupName]="i">
+                                    <div class="order" fxFlex="10" fxFlexAlign="end">{{i + 1}}</div>
+                                    <mat-form-field fxFlex="40">
+                                        <mat-select placeholder="Time Period" formControlName="id">
+                                            <mat-option *ngFor="let pricePeriod of peakPriceList"
+                                                        [value]="pricePeriod.id">
+                                                {{pricePeriod.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field fxFlex="40">
+                                        <input matInput type="number" placeholder="Price" formControlName="value">
+                                    </mat-form-field>
+                                    <div class="delete-row" (click)="deletePeakPrice(i)" fxFlexAlign="end" fxFlex="5">
+                                        <mat-icon>close</mat-icon>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <button mat-button class="add-new-btn" (click)="addPeakPrice()">Add New</button>
+                    </div>
+                </div>
+            </div>
+            <div class="price-block-container" fxLayout="column" fxLayoutGap="32px" formArrayName="offPeakPrices">
+                <div class="price-block">
+                    <div class="header-block" fxLayout="row" fxLayoutAlign="start center">
+                        Off Peak
+                        <mat-icon>info_outline</mat-icon>
+                    </div>
+                    <div class="content-block">
+                        <div class="peak-header" fxLayout="row">
+                            <div class="order" fxFlex="10">No</div>
+                            <div class="sub-location-name" fxFlex="70">
+                                Off Peak Period
+                            </div>
+                            <div class="sub-location-name" fxFlex="20">
+                                Price
+                            </div>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="peak-list" fxLayout="column">
+                            <ng-container
+                                *ngFor="let price of subLocationForm.controls['offPeakPrices']['controls']; let i = index">
+                                <div class="peak-list-item" fxLayout="row" fxLayoutGap="5px" [formGroupName]="i">
+                                    <div class="order" fxFlex="10" fxFlexAlign="end">{{i + 1}}</div>
+                                    <mat-form-field fxFlex="40">
+                                        <mat-select placeholder="Time Period" formControlName="id">
+                                            <mat-option *ngFor="let pricePeriod of offPeakPriceList"
+                                                        [value]="pricePeriod.id">
+                                                {{pricePeriod.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field fxFlex="40">
+                                        <input matInput type="number" placeholder="Price" formControlName="value">
+                                    </mat-form-field>
+                                    <div class="delete-row" (click)="deleteOffPeakPrice(i)" fxFlexAlign="end"
+                                         fxFlex="5">
+                                        <mat-icon>close</mat-icon>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <button mat-button class="add-new-btn" (click)="addOffPeakPrice()">Add New</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="start">
+    <button fxFlex="20%" mat-button mat-raised-button color="primary" matDialogClose (click)="submit()"
+            [disabled]="subLocationForm.invalid">SUBMIT
+    </button>
+</mat-dialog-actions>

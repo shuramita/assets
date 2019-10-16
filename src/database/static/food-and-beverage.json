@@ -1,0 +1,9 @@
+[
+  {"id":1,"slug":"alcohol","system_id":"alcohol","name":"Alcohol","description":"Alcohol"},
+  {"id":2,"slug":"external-catering-not-allowed","system_id":"external-catering-not-allowed","name":"External Catering Not Allowed","description":"External Catering Not Allowed"},
+  {"id":3,"slug":"food-not-provided","system_id":"food-not-provided","name":"Food Not Provided","description":"Food Not Provided"},
+  {"id":4,"slug":"food-provided","system_id":"food-provided","name":"Food Provided","description":"Food Provided"},
+  {"id":5,"slug":"halal","system_id":"halal","name":"Halal","description":"Halal"},
+  {"id":6,"slug":"non-alcohol","system_id":"non-alcohol","name":"Non-alcohol","description":"Non-alcohol"},
+  {"id":7,"slug":"vegetarian","system_id":"vegetarian","name":"Vegetarian","description":"Vegetarian"}
+]

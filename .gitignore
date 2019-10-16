@@ -1,0 +1,4 @@
+/.idea
+/src/assets/public
+/src/resources/views/index.blade.php
+/src/assets/src/environments/environment.local.ts

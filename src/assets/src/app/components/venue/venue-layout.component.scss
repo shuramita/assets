@@ -1,0 +1,54 @@
+.venue-toolbar {
+    height: 80px;
+    background-color: #ffffff;
+    padding: 0 80px;
+    border-bottom: 1px solid #f3f3f3;
+
+    .icon-size {
+        width: 194px;
+        height: 32px;
+    }
+}
+
+.router-outlet {
+    background-color: #ffffff;
+}
+
+footer {
+    padding: 80px 210px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #222222;
+    background-color: #ffffff;
+
+    .btn.btn-orange.radius {
+        border-radius: 40px;
+    }
+
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+
+    .btn.btn-orange {
+        background-color: #ff9700;
+        -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15);
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    a.waves-effect, a.waves-light {
+        display: inline-block;
+    }
+
+    .view-as {
+        position: fixed;
+        right: 15px;
+        bottom: 15px;
+        z-index: 2;
+        padding: 10px 15px;
+    }
+
+    .btn-orange {
+        background-color: #f57c00 !important;
+        color: #fff !important;
+    }
+}

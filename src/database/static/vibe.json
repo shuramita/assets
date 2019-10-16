@@ -1,0 +1,11 @@
+[
+  {"id":1,"slug":"casual","system_id":"casual","name":"Casual","description":"Casual"},
+  {"id":2,"slug":"corporate","system_id":"corporate","name":"Corporate","description":"Corporate"},
+  {"id":3,"slug":"cozy","system_id":"cozy","name":"Cozy","description":"Cozy"},
+  {"id":4,"slug":"elegant","system_id":"elegant","name":"Elegant","description":"Elegant"},
+  {"id":5,"slug":"family-friendly","system_id":"family-friendly","name":"Family-friendly","description":"Family-friendly"},
+  {"id":6,"slug":"minimalist","system_id":"minimalist","name":"Minimalist","description":"Minimalist"},
+  {"id":7,"slug":"modern","system_id":"modern","name":"Modern","description":"Modern"},
+  {"id":8,"slug":"vintage","system_id":"vintage","name":"Vintage","description":"Vintage"},
+  {"id":9,"slug":"trendy","system_id":"trendy","name":"Trendy","description":"Trendy"}
+]

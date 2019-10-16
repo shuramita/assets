@@ -1,0 +1,43 @@
+<mat-toolbar mat-dialog-title class="header-toolbar mat-toolbar-single-row" fxLayout="row"
+             fxLayoutAlign="space-between center">
+    <div class="title">
+        Add Custom Field
+    </div>
+    <button class="close-btn" matDialogClose mat-button>
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-divider></mat-divider>
+<div class="main-content" fxLayout="column" fxLayoutAlign="center" [formGroup]="customFieldForm">
+    <mat-form-field>
+        <input matInput placeholder="Title" formControlName="title" type="text">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Key" formControlName="key" type="text">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Description" formControlName="description" type="text">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Type" formControlName="type">
+            <mat-option *ngFor="let type of types"
+                        [value]="type.key">
+                {{type.text}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <ng-container [ngSwitch]="customFieldForm.controls['type'].value">
+        <mat-form-field *ngSwitchDefault>
+            <input matInput placeholder="Default Value" formControlName="value" type="text">
+        </mat-form-field>
+        <mat-form-field *ngSwitchCase="'number'">
+            <input matInput placeholder="Default Value" formControlName="value" type="number">
+        </mat-form-field>
+        <mat-form-field *ngSwitchCase="'text'">
+            <textarea matInput placeholder="Default Value" formControlName="value" type="text"></textarea>
+        </mat-form-field>
+    </ng-container>
+    <button mat-raised-button color="primary" (click)="submit()"
+            [disabled]="false">SUBMIT
+    </button>
+</div>

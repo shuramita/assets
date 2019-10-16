@@ -1,0 +1,5 @@
+[
+  {"name":"Mall","id":"mall","description":"Mall, Shopping Center"},
+  {"name":"Co-Working Space","id":"working","description":"Co-working Space"},
+  {"name":"Theater","id":"theater","description":"Theater"}
+]

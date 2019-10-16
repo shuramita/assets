@@ -1,0 +1,42 @@
+<div class="setting-container main-container">
+    <mat-toolbar class="title">
+        Setting
+    </mat-toolbar>
+    <div class="setting-content" fxLayout="row" fxLayoutGap="20px">
+        <mat-card fxFlex="25" class="nav-list">
+            <a routerLink="organization" routerLinkActive="router-link-active">
+            <div class="list-item" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="item-name">My Organizations</div>
+                <mat-icon>arrow_forward_ios</mat-icon>
+            </div>
+            </a>
+            <a routerLink="building" routerLinkActive="router-link-active">
+            <div class="list-item" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="item-name">My Buildings</div>
+                <mat-icon>arrow_forward_ios</mat-icon>
+            </div>
+            </a>
+            <a routerLink="customer" routerLinkActive="router-link-active">
+            <div class="list-item" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="item-name">Customers</div>
+                <mat-icon>arrow_forward_ios</mat-icon>
+            </div>
+            </a>
+            <a routerLink="price" routerLinkActive="router-link-active">
+                <div class="list-item" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="item-name">Price setting</div>
+                    <mat-icon>arrow_forward_ios</mat-icon>
+                </div>
+            </a>
+            <a routerLink="custom-field" routerLinkActive="router-link-active">
+                <div class="list-item" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="item-name">Custom Field setting</div>
+                    <mat-icon>arrow_forward_ios</mat-icon>
+                </div>
+            </a>
+        </mat-card>
+        <mat-card class="nav-right-container" fxFlex="75">
+            <router-outlet></router-outlet>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+@import '../../scss/base/color';
+
+.mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+    border-radius: 2px !important;
+}
+
+.mat-form-field {
+    font-size: 16px;
+}

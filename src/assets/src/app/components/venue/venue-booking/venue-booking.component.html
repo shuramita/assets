@@ -1,0 +1,200 @@
+<div class="wrapper" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px">
+  <div fxFlex="70" class="right-side">
+    <mat-horizontal-stepper linear #stepper labelPosition="bottom"  (selectionChange)="setPositionCardInfoOnImage()">
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Customer information</ng-template>
+          <div class="step-title">Your information</div>
+          <div fxLayout="row wrap" fxLayoutAlign="space-between start">
+            <mat-form-field fxFlex="48">
+              <input matInput placeholder="First name" formControlName="firstName" required name="firstName">
+              <mat-error *ngIf="firstFormGroup.controls['firstName'].hasError('required')">
+                <div>
+                  Please enter first name
+                </div>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="48">
+              <input matInput placeholder="Last name" formControlName="lastName" required name="lastName">
+              <mat-error *ngIf="firstFormGroup.controls['lastName'].hasError('required')">
+                <div>
+                  Please enter last name
+                </div>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100">
+              <input matInput placeholder="Email" formControlName="email" required name="email">
+              <mat-error *ngIf="firstFormGroup.controls['email'].errors">
+                <div *ngIf="firstFormGroup.controls['email'].errors['pattern']">
+                  Invalid email address
+                </div>
+              </mat-error>
+              <mat-error *ngIf="firstFormGroup.controls['email'].hasError('required')">
+                <div>
+                  Please enter email address
+                </div>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="48">
+              <input type="number" matInput placeholder="Mobile number" formControlName="phoneNumber" required name="phoneNumber">
+              <mat-error *ngIf="firstFormGroup.controls['phoneNumber'].hasError('required')">
+                <div>
+                  Please enter mobile number
+                </div>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="48">
+              <mat-select placeholder="Country of residence" formControlName="countryOfResidence" name="countryOfResidence">
+                <mat-option *ngFor="let country of countries" [value]="country.key">
+                  {{country.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="step-title margin-t-b-24">Let us know what you need</div>
+          <div class="color-777">Let us know your request</div>
+          <div>
+            <mat-form-field fxFlex="100">
+              <textarea matInput rows="4" cols="50" placeholder="Enter you request here..." formControlName="description" name="description"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="div-btn-next">
+            <button mat-raised-button color="primary" matStepperNext [disabled]="!firstFormGroup.valid" id="nextStep">Next Step</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <section *ngIf="loading" class="loading">
+            <mat-spinner color="accent"></mat-spinner>
+        </section>
+        <form [formGroup]="secondFormGroup" *ngIf="!loading">
+          <ng-template matStepLabel>Payment Information
+          </ng-template>
+          <div class="step-title">Select payment method</div>
+          <div class="margin-t-b-24">
+            <mat-accordion displayMode="default">
+              <mat-radio-group formControlName="paymentType">
+                <mat-expansion-panel hideToggle [expanded]="secondFormGroup.controls['paymentType'].value === 'creditCard'" (opened)="setPaymentType('creditCard');">
+                  <mat-expansion-panel-header>
+                    <mat-radio-button value="creditCard">
+                      <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <mat-panel-title class="title">
+                          Credit/Debit Card
+                        </mat-panel-title>
+
+                      </div>
+                    </mat-radio-button>
+                    <div class="position-icon-expansion-header" fxLayoutGap="8px">
+                      <mat-icon svgIcon="master"></mat-icon>
+                      <mat-icon svgIcon="visa"></mat-icon>
+                    </div>
+                  </mat-expansion-panel-header>
+                  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px" class="margin-t-b-24">
+                    <div fxFlex="50" fxLayout="row wrap" fxLayoutAlign="space-between start" class="expansion-panel-content">
+                      <mat-form-field fxFlex="100">
+                        <input type="text" matInput placeholder="Card number" formControlName="cardNumber" required name="cardNumber">
+                        <mat-error *ngIf="secondFormGroup.controls['cardNumber'].hasError('required')">
+                          <div>
+                            Please enter card number
+                          </div>
+                        </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field fxFlex="100">
+                        <input matInput type="text" placeholder="Card holder name" formControlName="cardHolderName" required name="cardHolderName">
+                        <mat-error *ngIf="secondFormGroup.controls['cardHolderName'].hasError('required')">
+                          <div>
+                            Please enter card holder number
+                          </div>
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-form-field fxFlex="48">
+                        <input matInput type="text" placeholder="Expires date" formControlName="expiresDate" required name="expiresDate">
+                        <mat-error *ngIf="secondFormGroup.controls['expiresDate'].hasError('required')">
+                          <div>
+                            Please enter expires date
+                          </div>
+                        </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field fxFlex="48">
+                        <input matInput type="password" placeholder="CVV" formControlName="cvv" required name="cvv">
+                        <mat-error *ngIf="secondFormGroup.controls['cvv'].hasError('required')">
+                          <div>
+                            Please enter cvv
+                          </div>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div fxFlex="50" class="container">
+                      <img #divCardNumber src="http://demo.realestatedoc.co/upload/photos/1-2019/small-1548392297-rectangle@3x.png" width="100%">
+                      <div [ngStyle]="{'left.px': positionCardNumber?.offsetX, 'bottom.px' : positionCardNumber?.offsetY}">
+                        {{secondFormGroup.controls['cardNumber'].value}}
+                      </div>
+                      <div [ngStyle]="{'left.px': positionCardHolder?.offsetX, 'bottom.px' : positionCardHolder?.offsetY}">
+                        {{secondFormGroup.controls['cardHolderName'].value}}
+                      </div>
+                      <div [ngStyle]="{'left.px': positionExpiryDate?.offsetX, 'bottom.px' : positionExpiryDate?.offsetY}">
+                        {{secondFormGroup.controls['expiresDate'].value}}
+                      </div>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel hideToggle [expanded]="secondFormGroup.controls['paymentType'].value === 'paypal'" (opened)="setPaymentType('paypal');">
+                  <mat-expansion-panel-header>
+                    <mat-radio-button value="paypal">
+                      <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <mat-panel-title class="title">
+                          Paypal
+                        </mat-panel-title>
+                      </div>
+                    </mat-radio-button>
+                    <div class="position-icon-expansion-header">
+                      <mat-icon svgIcon="paypal"></mat-icon>
+                    </div>
+                  </mat-expansion-panel-header>
+                </mat-expansion-panel>
+              </mat-radio-group>
+            </mat-accordion>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-checkbox color="primary" [(ngModel)]="checkCondition" [ngModelOptions]="{ standalone: true }"> I agree to RealestateDoc’s
+              <a href="#" target="_blank">Terms of Use</a> and
+              <a href="#" target="_blank">Privacy Policy</a>
+            </mat-checkbox>
+            <button type="button" mat-raised-button color="primary" [disabled]="!secondFormGroup.valid || !checkCondition || loading" (click)="onSubmit();" id="finishBooking">Finish Booking</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Confirmation</ng-template>
+        <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="16px" class="congratulations">
+          <img src="http://demo.realestatedoc.co/upload/photos/1-2019/small-1548402373-group@3x.png" width="156px">
+          <div class="step-title">Congratulations!</div>
+          <div class="color-777 align-center">Mauris eu mauris posuere, lacinia tortor in, tincidunt est. Vestibulum imperdiet id urna in varius. </div>
+          <div class="color-777">We’ll send confirmation of your booking to john.doe@email.com</div>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+  <div fxFlex="30" class="left-side">
+    <div fxLayout="column" fxLayoutGap="16px">
+      <img *ngIf="!venue?.cover" src="{{IMAGE_URL.NO_FLOORPLAN}}" width="100%" height="210px">
+      <img *ngIf="venue?.cover" src="{{helper.media(venue?.cover.values.small.uri)}}" width="100%" height="210px">
+      <div class="color-777">{{venue?.building.address}}</div>
+      <div class="step-title">{{venue?.name}}</div>
+      <div class="color-777 font-size-12">{{venue?.type.description}}</div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="56px">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+            <mat-icon svgIcon="sqaure"></mat-icon>
+          <div class="color-777 font-size-12">{{venue?.size.value}} {{venue?.size.unit}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+            <mat-icon svgIcon="chair"></mat-icon>
+          <div class="color-777 font-size-12">50 - 400 seats</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

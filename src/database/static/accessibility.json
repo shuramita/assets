@@ -1,0 +1,8 @@
+[
+  {"id":1,"slug":"bus-stop","system_id":"bus-stop","name":"Bus stop","description":"Bus stop"},
+  {"id":2,"slug":"street-parking","system_id":"street-parking","name":"Street parking","description":"Street parking"},
+  {"id":3,"slug":"car-park","system_id":"car-park","name":"Car park","description":"Car park"},
+  {"id":4,"slug":"taxi-stand","system_id":"taxi-stand","name":"Taxi stand","description":"Taxi stand"},
+  {"id":5,"slug":"nearby-mrt","system_id":"nearby-mrt","name":"Nearby MRT","description":"Nearby MRT"},
+  {"id":6,"slug":"valet-service","system_id":"valet-service","name":"Valet service","description":"Valet service"}
+]

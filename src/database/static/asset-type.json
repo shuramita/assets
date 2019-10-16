@@ -1,0 +1,7 @@
+[
+  {"name":"Push Cart","slug":"push-cart","system_id":"push-cart","description":"Push Cart"},
+  {"name":"Atrium Space","slug":"atrium-space","system_id":"atrium-space","description":"Atrium Space"},
+  {"name":"Meting Room","slug":"metting-room","system_id":"metting-room","description":"Meting Room"},
+  {"name":"Theater","slug":"theater","system_id":"theater","description":"Theater"},
+  {"name":"Venue","slug":"venue","system_id":"venue","description":"Venue"}
+]

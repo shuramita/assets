@@ -1,0 +1,54 @@
+<div class="image-venue" *ngIf="venue">
+  <img src="{{venue?.cover ? helper.media(venue?.cover.values.origin.uri) : IMAGE_URL.NO_FLOORPLAN}}" width="100%"
+    height="100%">
+</div>
+
+<div class="wrapper-content" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="48px">
+  <div fxFlex="60" fxLayout="column" fxLayoutGap="24px">
+    <div class="title">{{venue?.name}}</div>
+    <div class="color-777">{{venue?.building.address}}</div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="56px">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+          <mat-icon svgIcon="sqaure"></mat-icon>
+        <div class="color-777 font-size-14">{{venue?.size.value}} {{venue?.size.unit}}</div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+          <mat-icon svgIcon="chair"></mat-icon>
+        <div class="color-777 font-size-14">50 - 400 seats</div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="sub-title margin-t-24">Description</div>
+    <div class="color-777">
+      {{venue?.description}}
+    </div>
+    <div class="sub-title margin-t-24">Amenities</div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="amenities-content">
+      <div fxFlex="50" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px" *ngFor="let amenity of venueDetail.amenities">
+        <mat-icon color="grey">{{amenity.icon}}</mat-icon>
+        <div class="color-777">{{amenity.description}}</div>
+      </div>
+    </div>
+    <div class="sub-title margin-t-24">Directions</div>
+    <div *ngFor="let direction of venueDetail.directions" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+      <mat-icon color="grey">{{direction.icon}}</mat-icon>
+      <div class="color-777">{{direction.description}}</div>
+    </div>
+  </div>
+  <div>
+    <div class="amount-div" fxLayout="column">
+      <div class="color-777">Start from</div>
+      <div class="currency">$280</div>
+      <div class="color-777 font-size-12">Mauris eu mauris posuere, lacinia tortor in, tincidunt est. Vestibulum imperdiet id urna in varius.</div>
+      <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="16px" class="margin-t-16">
+        <a mat-raised-button type="button" color="primary" class="full-width" routerLink="/asset/venue/booking/{{venue?.id}}">Book Now</a>
+        <a routerLink="." fxLayout="row" fxLayoutAlign="start center">Inquire Now
+          <mat-icon color="grey">chevron_right</mat-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="image-venue padding-b-80">
+  <img [src]="helper.asset('img/map-demo.jpg')" width="100%" height="100%">
+</div>

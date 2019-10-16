@@ -1,0 +1,49 @@
+<div>
+    <mat-toolbar class="header-toolbar venue-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <a class="mat-button-logo" mat-button routerLink="/asset/venue">
+                <mat-icon svgIcon="app-logo" class="icon-size" color="primary"></mat-icon>
+            </a>
+        </div>
+        <div>
+            <button type="button" mat-button>
+                About Us
+            </button>
+            <button type="button" mat-button>
+                Venues
+            </button>
+            <button type="button" mat-button>
+                Careers
+            </button>
+            <button type="button" mat-button>
+                Contact Us
+            </button>
+        </div>
+        <div fxLayoutGap="16px">
+            <a *ngIf="!apiKey" type="button" mat-raised-button href="/register">
+                Sign up
+            </a>
+            <a *ngIf="!apiKey" type="button" color="primary" mat-raised-button href="/login">
+                Login
+            </a>
+            <a *ngIf="apiKey" type="button" color="primary" mat-raised-button (click)="logout()">
+                Logout
+            </a>
+        </div>
+
+    </mat-toolbar>
+</div>
+<div class="router-outlet">
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
+</div>
+<footer fxLayout="row" fxLayoutAlign="space-between center">
+    <a class="btn btn-orange radius view-as waves-effect waves-light" href="/asset">
+        Demo as Contract Builder / Landlord
+    </a>
+    <div>©2019 • All rights reserved</div>
+    <div fxLayout="row" fxLayoutGap="40px">
+        <mat-icon svgIcon="facebook"></mat-icon>
+        <mat-icon svgIcon="twitter"></mat-icon>
+        <mat-icon svgIcon="youtube"></mat-icon>
+    </div>
+</footer>

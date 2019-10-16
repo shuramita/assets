@@ -1,0 +1,59 @@
+<div class="layout-container">
+    <ng-container *ngIf="isShowNavBar; else noNavBar">
+        <mat-toolbar class="header-toolbar">
+            <mat-icon (click)="isExpanded = !isExpanded">sort</mat-icon>
+            <span class="left-fill-remaining-space">
+                <div>
+                    <a class="mat-button-logo" mat-button routerLink="/asset">
+                        <mat-icon svgIcon="app-logo" class="icon-size" color="primary"></mat-icon>
+                    </a>
+                </div>
+            </span>
+
+            <mat-icon [matBadgeHidden]="notifications?.length == 0" [matMenuTriggerFor]="menu" class="notification" matBadge="{{notifications?.length}}"
+                matBadgeColor="warn" matBadgePosition="above after">notifications
+            </mat-icon>
+            <mat-menu #menu="matMenu" class="notification-menu">
+                <mat-list *ngIf="notifications" role="list">
+                    <mat-list-item *ngFor="let notification of notifications" role="listitem">
+                        <a href="{{notification.url}}" mat-stroked-button>{{notification.text}}</a>
+                    </mat-list-item>
+
+                </mat-list>
+            </mat-menu>
+            <mat-divider [vertical]="true"></mat-divider>
+            <button mat-icon-button (click)="logout()" matTooltip="Log out">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <mat-sidenav-container autosize class="left-sidenav-container">
+            <mat-sidenav #sidenav class="left-sidenav" mode="side" opened="true">
+                <mat-nav-list class="dashboard">
+                    <ng-container *ngFor="let item of items">
+                        <a href="{{ item.link }}" mat-list-item>
+
+                            <mat-icon *ngIf="item.icon.mdi" mat-list-icon>{{item.icon.mdi}}</mat-icon>
+
+                            <mat-icon *ngIf="item.icon.svg && !item.icon.mdi" [innerHTML]="item.icon.svg | safe: 'html'" mat-list-icon></mat-icon>
+
+                            <p *ngIf="isExpanded" matLine>{{ item.name }}</p>
+
+                        </a>
+                    </ng-container>
+                    <mat-divider></mat-divider>
+                </mat-nav-list>
+            </mat-sidenav>
+
+            <div class="left-sidenav-content">
+                <router-outlet></router-outlet>
+            </div>
+            <a class="btn btn-orange radius view-as waves-effect waves-light" href="/asset/venue">
+                Demo as Tenant
+            </a>
+        </mat-sidenav-container>
+    </ng-container>
+    <ng-template #noNavBar>
+        <router-outlet></router-outlet>
+    </ng-template>
+</div>

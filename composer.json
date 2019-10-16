@@ -1,0 +1,30 @@
+{
+    "name": "realestatedoc/asset",
+    "description": "Description",
+    "type": "library",
+    "namespace":"RealEstateDoc",
+    "authors": [
+        {
+            "name": "Tam Nguyen",
+            "email": "minhtamtt@gmail.com"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "src/database/seeds",
+            "src/database/factories"
+        ],
+        "psr-4": {
+            "RealEstateDoc\\Asset\\": "src/"
+        },
+        "files": ["src/Helpers/Helper.php"]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RealEstateDoc\\Asset\\AssetServiceProvider",
+                "RealEstateDoc\\Asset\\EventServiceProvider"
+            ]
+        }
+    }
+}

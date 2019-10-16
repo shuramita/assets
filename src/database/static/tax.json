@@ -1,0 +1,4 @@
+[
+  {"id":"1","code":"GST","value":"GST","rate":7,"group":"singapore","description":"GST 7%","order":1},
+  {"id":"2","code":"VAT","value":"VAT","rate":10,"group":"vietnam","description":"VAT 10%","order":2}
+]

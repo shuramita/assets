@@ -1,0 +1,15 @@
+app-asset-list {
+
+}
+
+.add-price {
+    // overwrite dialog
+    .mat-dialog-container {
+        padding: 0;
+
+        .mat-dialog-title {
+            margin: 0;
+            max-height: 10%
+        }
+    }
+}

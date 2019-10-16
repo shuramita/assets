@@ -1,0 +1,50 @@
+.setting-container {
+
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #222222;
+        padding: 0;
+    }
+
+    .nav-list {
+        padding: 0;
+    }
+
+    .list-item {
+        padding: 16px;
+        min-height: 50px;
+        border-bottom: solid 1px #f3f3f3;
+
+        &:last-child {
+            border-bottom: unset;
+        }
+
+        mat-icon {
+            font-size: 12px;
+            width: unset;
+            height: unset;
+        }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #777777;
+        }
+    }
+
+    .router-link-active {
+
+        .list-item {
+            color: #723bd4;
+
+            .item-name {
+                color: #723bd4;
+            }
+        }
+    }
+
+    .nav-right-container {
+        padding: 32px;
+    }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="20px" viewBox="0 0 18 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>ic/chair</title>
+    <desc>Created with Sketch.</desc>
+    <g id="User-Side" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="red_wl_locations_01" transform="translate(-782.000000, -619.000000)">
+            <g id="Group-5" transform="translate(210.000000, 275.000000)">
+                <g id="Group-8" transform="translate(410.000000, 0.000000)">
+                    <g id="Group-2" transform="translate(159.000000, 342.000000)">
+                        <g id="ic/chair">
+                            <rect id="Rectangle" x="0" y="0" width="24" height="24.001"></rect>
+                            <path d="M21.001,13.002 C21.001,17.9 16.92,18.863 13.001,18.984 L13.001,20.002 L16.001,20.002 L16.001,22.002 L8.001,22.002 L8.001,20.002 L11.001,20.002 L11.001,18.984 C7.082,18.863 3.001,17.9 3.001,13.002 C3.001,8.401 7.536,2.002 12.001,2.002 C16.466,2.002 21.001,8.401 21.001,13.002 Z M5.001,13.002 C5.001,15.025 5.542,17.002 12.001,17.002 C18.46,17.002 19.001,15.025 19.001,13.002 C19.001,9.448 15.247,4.002 12.001,4.002 C8.755,4.002 5.001,9.448 5.001,13.002 Z M15.001,15.002 C14.88,14.738 13.609,14.002 12.001,14.002 C10.393,14.002 9.122,14.738 8.993,15.061 L7.001,15.002 C7.001,13.234 9.636,12.002 12.001,12.002 C14.366,12.002 17.001,13.234 17.001,15.002 L15.001,15.002 Z" id="Combined-Shape" fill="#CDCDCD" fill-rule="nonzero"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
