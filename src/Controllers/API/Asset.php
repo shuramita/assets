@@ -15,11 +15,21 @@ use Illuminate\Validation\Rule;
 use Shura\Asset\Models\Price;
 use Shura\Asset\Models\Field;
 use Shura\Asset\Models\Amenity;
-
+/**
+ * @group Asset Module
+ *
+ * */
 class Asset extends Controller
 {
+    /**
+     * Add new asset
+     * User can add new asset
+     * @authenticated
+     * @bodyParam name string require The name of asset Example: The location A in floor 1
+     * @bodyParam status string option The status of asset, can be null or one of value default **draft** or **unpublished**, **published**   Example: published
+     *
+     * */
     public function add(Request $request) {
-//        var_dump($request->get('prices'));exit;
         $validator = Validator::make($request->all(),[
             'name'=>'required',
             'status'=>['nullable',function ($attribute, $value, $fail) {
@@ -75,8 +85,7 @@ class Asset extends Controller
                 },
             ]
         ]);
-//        var_dump($request->get('photos'));exit;
-//        var_dump();exit;
+
         if ($validator->fails()) {
             return $this->validationError($validator->errors()->getMessages(),422);
         }
@@ -97,6 +106,12 @@ class Asset extends Controller
         $asset->amenities;
         return $this->jsonResponse($asset);
     }
+
+    /**
+     * Module information
+     * It can be useful when you implement frontend SPA, the api return organization info that use is working on
+     * It also returns list of asset types, timezone, currency prices options fields, taxes
+     * */
     public function info(Request $request) {
         $info = new \stdClass();
         $info->organization = Helper::org();
