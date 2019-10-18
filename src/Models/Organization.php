@@ -11,7 +11,7 @@ use Shura\Asset\Helpers\Helper as AssetHelper;
 use Illuminate\Database\Eloquent\Builder;
 use Shura\Asset\Helpers\Helper;
 
-class Organization extends Model
+class Organization extends \Core\Organization\Models\Organization
 {
     protected $table = 'ass_organization';
 

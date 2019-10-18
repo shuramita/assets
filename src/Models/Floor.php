@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Shura\Asset\Helpers\Helper;
 
-class Floor extends Model
+class Floor extends \Core\Organization\Models\Floor
 {
     protected $table = 'ass_floor';
 
@@ -31,7 +31,6 @@ class Floor extends Model
 
         static::creating(function ($model)
         {
-//            $model->slug = str_slug($model->name);
                 $model->building_id = Helper::building()->id;
         });
         static::updating(function ($model)

@@ -9,6 +9,11 @@
             "email": "minhtamtt@gmail.com"
         }
     ],
+    "require": {
+        "core/admin": "*",
+        "core/organization": "*",
+        "shura/backoffice": "*"
+    },
     "autoload": {
         "classmap": [
             "src/database/seeds",

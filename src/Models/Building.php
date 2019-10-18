@@ -7,10 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Shura\Asset\Helpers\Helper;
 
-class Building extends Model
+class Building extends \Core\Organization\Models\Building
 {
-    protected $table = 'ass_building';
-
     protected $hidden = [];
 
     public $appends = ['is_working_building'];
