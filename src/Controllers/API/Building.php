@@ -7,6 +7,9 @@ use Shura\Asset\Controllers\Controller;
 use Shura\Asset\Models\Building as BuildingModel;
 use Illuminate\Validation\Rule;
 use Validator;
+/**
+ * @group Building
+ * */
 class Building extends Controller
 {
     public function add(Request $request) {

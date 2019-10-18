@@ -27,7 +27,7 @@ class Asset extends Controller
      * @authenticated
      * @bodyParam name string require The name of asset Example: The location A in floor 1
      * @bodyParam status string option The status of asset, can be null or one of value default **draft** or **unpublished**, **published**   Example: published
-     *
+     * 
      * */
     public function add(Request $request) {
         $validator = Validator::make($request->all(),[

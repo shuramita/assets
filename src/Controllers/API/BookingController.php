@@ -9,7 +9,9 @@ use Illuminate\Validation\Rule;
 use Shura\Asset\Models\Asset;
 use Shura\Asset\Events\NewAssetBooking;
 use Validator;
-
+/**
+ * @group Booking
+ * */
 class BookingController extends Controller
 {
     public function book(Request $request) {

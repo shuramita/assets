@@ -7,6 +7,9 @@ use Shura\Asset\Controllers\Controller;
 use Shura\Asset\Models\Venue;
 use Illuminate\Validation\Rule;
 use Validator;
+/**
+ * @group Venue
+ * */
 class VenueController extends Controller
 {
     public function add(Request $request) {

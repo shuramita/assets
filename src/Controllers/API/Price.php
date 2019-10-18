@@ -12,6 +12,9 @@ use Validator;
 use Illuminate\Validation\Rule;
 use Shura\Asset\Models\Price as PriceModel;
 use Shura\Asset\Models\Asset;
+/**
+ * @group Price
+ * */
 class Price extends Controller
 {
     public function add(Request $request) {

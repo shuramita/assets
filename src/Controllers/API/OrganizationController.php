@@ -13,6 +13,9 @@ use Shura\Asset\Models\Organization;
 use Illuminate\Support\Facades\DB;
 use Shura\Asset\Models\User;
 use Validator;
+/**
+ * @group Organization
+ * */
 class OrganizationController extends Controller
 {
     public $namespace = 'Asset'; // registered in Service Provider

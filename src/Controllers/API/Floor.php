@@ -7,6 +7,9 @@ use Shura\Asset\Controllers\Controller;
 use Shura\Asset\Models\Floor as FloorModel;
 use Illuminate\Validation\Rule;
 use Validator;
+/**
+ * @group Floor
+ * */
 class Floor extends Controller
 {
     public function add(Request $request) {
