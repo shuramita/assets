@@ -3,14 +3,11 @@ namespace Shura\Asset;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
-//use Averspace\Admin\ViewComposers\Item;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
-use Shura\Asset\Commands\AssetInstall;
-use Shura\Asset\Commands\AssetReset;
-use Shura\Asset\Commands\AssetUninstall;
+use Shura\Asset\Commands\Install;
+use Shura\Asset\Commands\Reset;
+use Shura\Asset\Commands\Uninstall;
 use Shura\BackOffice\ViewComposers\Item;
 use Shura\Asset\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -42,9 +39,9 @@ class AssetServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->app->make(EloquentFactory::class)->load(__DIR__.'/database/factories');
             $this->commands([
-                AssetUninstall::class,
-                AssetInstall::class,
-                AssetReset::class
+                Uninstall::class,
+                Install::class,
+                Reset::class
             ]);
             
         }

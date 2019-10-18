@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\File;
 
-class AssetUninstall extends Command
+class Uninstall extends Command
 {
     /**
      * The name and signature of the console command.
@@ -21,7 +21,7 @@ class AssetUninstall extends Command
      *
      * @var string
      */
-    protected $description = 'Command un install database';
+    protected $description = 'Command uninstall database';
 
     /**
      * Create a new command instance.

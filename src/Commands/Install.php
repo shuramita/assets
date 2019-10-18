@@ -4,15 +4,17 @@ namespace Shura\Asset\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
+use Shura\Invoice\Database\Seeds\TermSeeder;
 
-class AssetReset extends Command
+class Install extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'asset:reset';
+    protected $signature = 'asset:install';
 
     /**
      * The console command description.
@@ -38,7 +40,13 @@ class AssetReset extends Command
      */
     public function handle()
     {
-        $this->call("asset:uninstall");
-        $this->call("asset:install");
+        $this->info('Run migration for organization package at folder ');
+        $this->info(__DIR__.'/../database/migrations');
+        collect(File::allFiles(__DIR__.'/../database/migrations'))->map(function($file){
+            Artisan::call("migrate",['--path'=>$file->getPathName(),'--realpath'=>true]);
+            return $file->getPathName();
+        })->toArray();
+
+
     }
 }
