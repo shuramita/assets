@@ -2,13 +2,13 @@
 
 namespace Shura\Asset\Middleware;
 
+use App\Http\Controllers\Response;
 use Closure;
-use Shura\Asset\Controllers\AssetResponse;
 use Shura\Asset\Helpers\Helper;
 use Shura\Asset\Models\User;
 class CheckEnviroment
 {
-    use AssetResponse;
+    use Response;
     /**
      * Handle an incoming request.
      *

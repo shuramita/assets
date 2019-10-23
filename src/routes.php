@@ -48,12 +48,7 @@ Route::prefix('api/asset/booking')
         Route::get('/search','BookingController@search')->name('user.search.asset.venue.booking')->middleware(['auth:api','cors',"ass_check:api,organization"]);
     });
 
-Route::prefix('api/asset/customers')
-    ->middleware(['auth:api','cors',"ass_check:api,organization,building"]) // require organization
-    ->namespace('Shura\Asset\Controllers\API')
-    ->group(function () {
-        Route::post('/','OrganizationController@customers')->name('user.search.asset.customer');
-    });
+
 Route::prefix('asset')
     ->middleware(['web'])
     ->namespace('Shura\Asset\Controllers')
