@@ -14,7 +14,6 @@ class CreateAssPriceTable extends Migration
     public function up()
     {
         $price_option = Helper::getJsonFromStaticData('price_option.json');
-//        var_dump($price_option);exit;
         if(!Schema::hasTable('ass_price')){
             Schema::create('ass_price', function (Blueprint $table) use($price_option) {
                         $table->increments('id');

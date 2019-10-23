@@ -49,7 +49,7 @@ class AssetServiceProvider extends ServiceProvider
             __DIR__.'/assets/public' => public_path('packages/asset'),
         ], 'public');
         $this->registerAdminNavigator();
-//        var_dump('here');exit;
+
         $this->app->singleton('Shura\Asset\Authenticated', function ($app) {
             return User::find(auth()->id());
         });

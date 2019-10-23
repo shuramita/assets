@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 use Shura\Asset\Facades\Auth;
 use Shura\Asset\Helpers\Helper as AssetHelper;
 use Illuminate\Database\Eloquent\Builder;
@@ -24,18 +25,7 @@ class Organization extends \Core\Organization\Models\Organization
         parent::__construct($attributes);
     }
     protected $hidden = [];
-    /**
-     * Boot function
-     *
-     * @return void
-     */
 
-//    public function getLogoAttribute($value)
-//    {
-//        if(!empty($value)) {
-//            return collect(json_decode($value))->first();
-//        }
-//    }
     public function getBase64Attribute(){
         // if the organization has base 64 of logo somewhere, let use it
         $logo = $this->logo;
@@ -66,23 +56,11 @@ class Organization extends \Core\Organization\Models\Organization
     {
         return collect(json_decode(AssetHelper::getStaticData('currency.json')));
     }
-//    public function getAssetTemplatesAttribute()
-//    {
-//        return Template::all();
-//    }
-
-//    public function getSystemDefaultTemplateAttribute()
-//    {
-//        return Template::systemDefaultTemplate();
-//    }
 
     public function getStaticTaxesAttribute(){
         return collect(json_decode(AssetHelper::getStaticData('tax.json')));
     }
 
-//    public function terms(){
-//        return $this->hasMany('Shura\Asset\Models\Term');
-//    }
     public function getIsWorkingOrganizationAttribute()
     {
         return Helper::org() && $this->id == Helper::org()->id;
@@ -90,9 +68,6 @@ class Organization extends \Core\Organization\Models\Organization
     public function taxes(){
         return $this->hasMany('Shura\Asset\Models\Tax');
     }
-//    public function template(){
-//        return $this->belongsTo('Shura\Asset\Models\Template','Asset_template_id');
-//    }
     public function getDefaultTaxAttribute(){
         return $this->taxes()->where('order','=', '1')->first();
     }
@@ -114,80 +89,7 @@ class Organization extends \Core\Organization\Models\Organization
         return $this->hasMany('Shura\Asset\Models\Field');
     }
     
-    protected static function boot()
-    {
-        parent::boot();
 
-        static::creating(function ($model)
-        {
-            $model->slug = str_slug($model->name);
-            $model->client_portal_url = str_replace('_','-',$model->slug).'-'.rand(1000,1000000);
-            $model->created_by = auth()->id();
-            if(empty($model->language)) {
-                $model->language = 'en'; // English
-            }
-        });
-        static::updating(function ($model)
-        {
-            $model->slug = str_slug($model->name);
-
-        });
-        static::created(function($model){
-            // create role for this organization
-            $default_roles = json_decode(AssetHelper::getStaticData('role.json'));
-
-            // reset current working organization
-            DB::table(config('asset.schema_prefix').'user_role')
-                ->where('user_id','=',$model->created_by)
-                ->update(['is_default'=>false]);
-
-            foreach ($default_roles as $default_role) {
-                $role = new Role();
-                $role->name             = $default_role->name;
-                $role->description      = $default_role->description;
-                $role->organization_id  = $model->id;
-                $role->save();
-                // set user created become admin of this organization
-                if($role->name == 'admin') {
-                    // set default working organization for created user
-                    $role->users()->attach($model->created_by,['is_default' => true]);
-                }
-            }
-
-            // seed term to database
-//            Term::seedTermToDatabase($model->id);
-            // seed Currency to database
-            Currency::seedCurrencyToDatabase($model->id);
-
-            // Seed default Asset Tax
-            Tax::seedDefaultTax($model->id);
-
-            // Seed default Asset template
-//            $template = Template::seedDefaultTemplate($model->id);
-
-//            $model->asset_template_id = $template->id;
-            // Create default Price
-            //TODO: It's not binding right after model created ,
-            Helper::rebindingAuthenticated();
-//            var_dump($model->id);exit;
-
-//            var_dump(Helper::org(true));exit;
-            Price::addNewPrice([
-                'name'=>'Normal Price',
-                'type'=>'normal',
-                'unit'=>'daily',
-                'description'=>'Default Price type that created by sytem'
-            ],$model->id);
-
-            $model->save();
-
-
-        });
-
-//        static::addGlobalScope('organization', function (Builder $builder) {
-//            $builder->where('created_by', '=', static::$authorized_user->id);
-//        });
-    }
     public function scopeCreatedByMe($query)
     {
         return $query->where('created_by', auth()->id() ?? 0);
