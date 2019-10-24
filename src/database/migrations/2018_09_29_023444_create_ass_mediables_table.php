@@ -13,7 +13,7 @@ class CreateAssMediablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ass_mediables', function (Blueprint $table) {
+        Schema::create(config('asset.schema_prefix').'mediables', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('media_id');
             $table->integer('mediable_id');
@@ -29,6 +29,6 @@ class CreateAssMediablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ass_mediables');
+        Schema::dropIfExists(config('asset.schema_prefix').'mediables');
     }
 }

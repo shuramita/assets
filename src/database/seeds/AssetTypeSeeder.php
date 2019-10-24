@@ -17,7 +17,10 @@ class AssetTypeSeeder extends Seeder
     {
         $asset_types = Helper::getJsonFromStaticData('asset-type.json');
         foreach ($asset_types as $asset_type) {
-            DB::table(config('asset.schema_prefix').'type')->insert([
+            DB::table(config('asset.schema_prefix').'type')->updateOrInsert(
+                [
+                    'system_id' => $asset_type->system_id
+                ],[
                 'name' => $asset_type->name,
                 'slug' => $asset_type->slug,
                 'system_id' => $asset_type->system_id,

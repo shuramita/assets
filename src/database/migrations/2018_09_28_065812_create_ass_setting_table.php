@@ -13,7 +13,7 @@ class CreateAssSettingTable extends Migration
      */
     public function up()
     {
-        Schema::create('ass_setting', function (Blueprint $table) {
+        Schema::create(config('asset.schema_prefix').'setting', function (Blueprint $table) {
             $table->increments('id');
             $table->string('key',50);
             $table->text('value')->nulable();
@@ -37,6 +37,6 @@ class CreateAssSettingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ass_setting');
+        Schema::dropIfExists(config('asset.schema_prefix').'setting');
     }
 }

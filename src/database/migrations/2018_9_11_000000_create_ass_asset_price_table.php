@@ -13,8 +13,8 @@ class CreateAssAssetPriceTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('ass_asset_price')){
-            Schema::create('ass_asset_price', function (Blueprint $table) {
+        if(!Schema::hasTable(config('asset.schema_prefix').'asset_price')){
+            Schema::create(config('asset.schema_prefix').'asset_price', function (Blueprint $table) {
                         $table->increments('id');
                         $table->integer('asset_id');
                         $table->integer('price_id');
@@ -34,6 +34,6 @@ class CreateAssAssetPriceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ass_asset_price');
+        Schema::dropIfExists(config('asset.schema_prefix').'asset_price');
     }
 }

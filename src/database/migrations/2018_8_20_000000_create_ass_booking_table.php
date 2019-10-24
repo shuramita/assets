@@ -13,8 +13,8 @@ class CreateAssBookingTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('ass_booking')){
-            Schema::create('ass_booking', function (Blueprint $table) {
+        if(!Schema::hasTable(config('asset.schema_prefix').'booking')){
+            Schema::create(config('asset.schema_prefix').'booking', function (Blueprint $table) {
                         $table->increments('id');
                         $table->string('name',1000)->nullable();
                         $table->string('slug',250)->nullable();
@@ -43,6 +43,6 @@ class CreateAssBookingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ass_booking');
+        Schema::dropIfExists(config('asset.schema_prefix').'booking');
     }
 }

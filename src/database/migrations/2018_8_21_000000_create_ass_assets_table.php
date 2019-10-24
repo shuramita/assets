@@ -14,8 +14,8 @@ class CreateAssAssetsTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('ass_assets')){
-            Schema::create('ass_assets', function (Blueprint $table) {
+        if(!Schema::hasTable(config('asset.schema_prefix').'assets')){
+            Schema::create(config('asset.schema_prefix').'assets', function (Blueprint $table) {
                 $status_enum = collect(Helper::getJsonFromStaticData('asset-status.json'))->map(function($item, $key) {
                     return $item->id;
                 });

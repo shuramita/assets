@@ -46,7 +46,10 @@ class Install extends Command
             Artisan::call("migrate",['--path'=>$file->getPathName(),'--realpath'=>true]);
             return $file->getPathName();
         })->toArray();
-
+        $this->info('Run db sheed for \Shura\Asset\Database\Seeds\AssetTypeSeeder');
+        Artisan::call("db:seed",['--class'=>\Shura\Asset\Database\Seeds\AssetTypeSeeder::class]);
+        $this->info('Run db sheed for \Shura\Asset\Database\Seeds\StaticDataSeeder');
+        Artisan::call("db:seed",['--class'=>\Shura\Asset\Database\Seeds\StaticDataSeeder::class]);
 
     }
 }

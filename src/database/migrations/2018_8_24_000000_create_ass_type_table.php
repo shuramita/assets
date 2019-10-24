@@ -13,8 +13,8 @@ class CreateAssTypeTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('ass_type')){
-            Schema::create('ass_type', function (Blueprint $table) {
+        if(!Schema::hasTable(config('asset.schema_prefix').'type')){
+            Schema::create(config('asset.schema_prefix').'type', function (Blueprint $table) {
                         $table->increments('id');
                         $table->string('name',1000);
                         $table->string('system_id',50);
@@ -36,6 +36,6 @@ class CreateAssTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ass_type');
+        Schema::dropIfExists(config('asset.schema_prefix').'type');
     }
 }

@@ -13,8 +13,8 @@ class CreateAssAssetFieldTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('ass_asset_field')){
-            Schema::create('ass_asset_field', function (Blueprint $table) {
+        if(!Schema::hasTable(config('asset.schema_prefix').'asset_field')){
+            Schema::create(config('asset.schema_prefix').'asset_field', function (Blueprint $table) {
                         $table->increments('id');
                         $table->integer('asset_id');
                         $table->string('field_id',60);
@@ -33,6 +33,6 @@ class CreateAssAssetFieldTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ass_asset_field');
+        Schema::dropIfExists(config('asset.schema_prefix').'asset_field');
     }
 }

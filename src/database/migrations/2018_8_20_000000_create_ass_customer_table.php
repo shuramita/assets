@@ -13,8 +13,8 @@ class CreateAssCustomerTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('ass_customer')){
-            Schema::create('ass_customer', function (Blueprint $table) {
+        if(!Schema::hasTable(config('asset.schema_prefix').'customer')){
+            Schema::create(config('asset.schema_prefix').'customer', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('first_name',1000);
                 $table->string('last_name',1000);
@@ -51,6 +51,6 @@ class CreateAssCustomerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ass_customer');
+        Schema::dropIfExists(config('asset.schema_prefix').'customer');
     }
 }

@@ -78,17 +78,12 @@ class AssetServiceProvider extends ServiceProvider
 //                'asset', new Item('Asset Manager','asset','admin','fa-newspaper')
 //            );
             app('BackOfficeNavigator')->registerNavigator(
-                'asset', new Item('Asset Manager','asset.angular.index',['admin'],['type'=>'svg','file'=>'invoice-dark'])
+                'asset', new Item('Asset Manager','asset.angular.index',['admin'],['type'=>'svg','file'=>'vendor.asset.invoice-dark'])
             );
-            app('BackOfficeNavigator')->registerNavigator(
-                'asset', new Item('Venue Manager','asset.angular.index',['admin','uoa'],['type'=>'svg','file'=>'invoice-dark'])
-            );
-            app('BackOfficeNavigator')->registerNavigator(
-                'venue.orders', new Item(' New Orders','backoffice_booking_venue_orders_list',['uoa'],['type'=>'svg','file'=>'baseline-autorenew-24px']),false,[],2
-            );
-            app('BackOfficeNavigator')->registerNavigator(
-                'setting', new Item('Asset Setting','asset.angular.setting.organization',['admin','uoa'],['type'=>'svg','file'=>'setting'])
-            );
+
+//            app('BackOfficeNavigator')->registerNavigator(
+//                'setting', new Item('Asset Setting','asset.angular.setting.organization',['admin','uoa'],['type'=>'svg','file'=>'setting'])
+//            );
             /**
              * // example for register sub Nav
              * app('AdminNavigator')->registerSubNavigator(

@@ -13,8 +13,8 @@ class CreateAssAssetStaticDataTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('ass_asset_static_data')){
-            Schema::create('ass_asset_static_data', function (Blueprint $table)  {
+        if(!Schema::hasTable(config('asset.schema_prefix').'asset_static_data')){
+            Schema::create(config('asset.schema_prefix').'asset_static_data', function (Blueprint $table)  {
                 $table->increments('id');
                 $table->integer('asset_id');
                 $table->integer('static_id');
@@ -32,6 +32,6 @@ class CreateAssAssetStaticDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ass_asset_static_data');
+        Schema::dropIfExists(config('asset.schema_prefix').'asset_static_data');
     }
 }

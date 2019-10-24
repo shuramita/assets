@@ -13,8 +13,8 @@ class CreateAssPaymentTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('ass_payment')){
-            Schema::create('ass_payment', function (Blueprint $table) {
+        if(!Schema::hasTable(config('asset.schema_prefix').'payment')){
+            Schema::create(config('asset.schema_prefix').'payment', function (Blueprint $table) {
                         $table->increments('id');
                         $table->string('transaction_id',100);
                         $table->string('credit_card',16);
@@ -39,6 +39,6 @@ class CreateAssPaymentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ass_payment');
+        Schema::dropIfExists(config('asset.schema_prefix').'payment');
     }
 }

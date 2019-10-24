@@ -13,7 +13,7 @@ class CreateAssPermissionTable extends Migration
      */
     public function up()
     {
-        Schema::create('ass_permission', function (Blueprint $table) {
+        Schema::create(config('asset.schema_prefix').'permission', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('role_id');
             $table->integer('organization_id');
@@ -37,6 +37,6 @@ class CreateAssPermissionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ass_permission');
+        Schema::dropIfExists(config('asset.schema_prefix').'permission');
     }
 }

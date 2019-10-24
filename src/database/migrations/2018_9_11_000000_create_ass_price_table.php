@@ -14,8 +14,8 @@ class CreateAssPriceTable extends Migration
     public function up()
     {
         $price_option = Helper::getJsonFromStaticData('price_option.json');
-        if(!Schema::hasTable('ass_price')){
-            Schema::create('ass_price', function (Blueprint $table) use($price_option) {
+        if(!Schema::hasTable(config('asset.schema_prefix').'price')){
+            Schema::create(config('asset.schema_prefix').'price', function (Blueprint $table) use($price_option) {
                         $table->increments('id');
                         $table->string('name',1000);
                         $table->enum('type',$price_option->type)->comment('Chars specify price type, peak, off peak or whatever');
@@ -40,6 +40,6 @@ class CreateAssPriceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ass_price');
+        Schema::dropIfExists(config('asset.schema_prefix').'price');
     }
 }

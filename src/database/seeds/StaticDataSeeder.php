@@ -39,7 +39,9 @@ class StaticDataSeeder extends Seeder
     }
     protected function addStaticData($data,$model){
         foreach ($data as $static_data) {
-            DB::table('ass_static_data')->insert([
+            DB::table('ass_static_data')->updateOrInsert([
+                'static_id' => $static_data->id,
+            ],[
                 'static_id' => $static_data->id,
                 'name' => $static_data->name,
                 'slug' => $static_data->slug,

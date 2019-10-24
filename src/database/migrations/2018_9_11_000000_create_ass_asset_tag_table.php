@@ -13,8 +13,8 @@ class CreateAssAssetTagTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('ass_asset_tag')){
-            Schema::create('ass_asset_tag', function (Blueprint $table) {
+        if(!Schema::hasTable(config('asset.schema_prefix').'asset_tag')){
+            Schema::create(config('asset.schema_prefix').'asset_tag', function (Blueprint $table) {
                         $table->increments('id');
                          $table->integer('asset_id');
                          $table->integer('tag_id');
@@ -32,6 +32,6 @@ class CreateAssAssetTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ass_asset_tag');
+        Schema::dropIfExists(config('asset.schema_prefix').'asset_tag');
     }
 }
