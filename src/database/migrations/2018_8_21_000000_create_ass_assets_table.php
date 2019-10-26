@@ -51,6 +51,6 @@ class CreateAssAssetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asset_location');
+        Schema::dropIfExists(config('asset.schema_prefix').'assets');
     }
 }
