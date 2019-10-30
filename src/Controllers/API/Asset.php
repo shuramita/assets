@@ -46,11 +46,6 @@ class Asset extends Controller
             'cover_photo'=>'nullable|int|exists:media,id',
             'floor_photo'=>'nullable|int|exists:media,id',
             'asset_type_id'=>'required|int|exists:ass_type,id',
-            'types.*'=>'required|int|exists:ass_static_data,id',
-            'events'=>'nullable|array|min:1',
-            'events.*'=>'nullable|int|exists:ass_static_data,id',
-            'amenities'=>'nullable|array|min:1',
-            'amenities.*'=>'nullable|int|exists:ass_static_data,id',
             'floor_id'=>'nullable|int|exists:ass_floor,id',
             'parent_asset_id'=>'nullable|int|exists:ass_assets,id',
             'description'=>'required',
@@ -70,19 +65,6 @@ class Asset extends Controller
             'prices.*' => [
                 'nullable',
                 'regex:/^\d*(\.\d{1,2})?$/'
-            ],
-            'tax_id'=>'nullable|int|exists:ass_setting,id',
-            'fields'=>[
-                'nullable',
-                'array',
-                function ($attribute, $value, $fail) {
-                    $prices = [];
-                    foreach ($value as $field_id => $field_value) {
-                        if(empty(Field::find($field_id))) {
-                            $fail('Price ID '.$field_id.' is invalid.');
-                        }
-                    }
-                },
             ]
         ]);
 

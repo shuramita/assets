@@ -11,14 +11,14 @@ Route::prefix('api/asset/system')
         Route::get('/info','SystemController@info')->name('user.get.asset.system.info');
     });
 Route::prefix('api/asset')
-    ->middleware(['auth:api','cors','ass_check:api,organization,building'])
+    ->middleware(['auth:api','cors','org_check:api,organization,business-unit'])
     ->namespace('Shura\Asset\Controllers\API')
     ->group(function () {
-        Route::post('/add','Asset@add')->name('user.add.asset');
-        Route::post('/field/add','Asset@addField')->name('user.add.asset.fied');
-        Route::post('/update','Asset@update')->name('user.update.asset');
-        Route::get('/info/{id}','Asset@detail')->name('user.get.asset.detail');
-        Route::get('/search/','Asset@search')->name('user.search.asset');
+        Route::post('/','Asset@add')->name('user.add.asset');
+        Route::post('/field','Asset@addField')->name('user.add.asset.field');
+        Route::put('/update','Asset@update')->name('user.update.asset');
+        Route::get('/{id}','Asset@detail')->name('user.get.asset.detail');
+        Route::get('/search','Asset@search')->name('user.search.asset');
     });
 Route::prefix('api/asset/public')
     ->middleware(['cors'])

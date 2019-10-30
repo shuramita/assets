@@ -1,13 +1,16 @@
 <?php
 namespace Shura\Asset;
 
+use Core\Organization\Helpers\Helper as Helper;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Shura\Asset\Commands\Install;
 use Shura\Asset\Commands\Reset;
 use Shura\Asset\Commands\Uninstall;
+use Shura\Asset\Models\AssetType;
 use Shura\BackOffice\ViewComposers\Item;
 use Shura\Asset\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -15,13 +18,6 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class AssetServiceProvider extends ServiceProvider
 {
     public $namespace = 'Asset';
-
-
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
 
     public function boot(Router $router)
     {
@@ -61,6 +57,10 @@ class AssetServiceProvider extends ServiceProvider
             'amenity' => 'Shura\Asset\Models\Amenity',
             'event' => 'Shura\Asset\Models\EventType',
         ],false);
+
+        Event::listen('App\Services\SystemInfoManager::info', function ($info) {
+            $info->asset_types = $info->asset_types ?? AssetType::all();
+        });
     }
 
     /**

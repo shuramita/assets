@@ -8,24 +8,19 @@
 
 namespace Shura\Asset\Models\Trails;
 
-
-use Shura\Asset\Helpers\Helper;
+use Core\Organization\Helpers\Helper as OrgHelper;
 
 trait AssetScope
 {
-    public function scopeInWorkingBuilding($query)
+    public function scopeInBusinessUnit($query)
     {
-        return $query->where('building_id', '=', Helper::building()->id ?? 0);
+        return $query->where('building_id', '=', OrgHelper::businessUnit()->id ?? 0);
     }
-    public function scopeInMyOrganization($query)
+    public function scopeInOrganization($query)
     {
-        $buildings = Helper::org()->buildings->map(function($value) {
+        $business_unit_ids = OrgHelper::org()->businessUnits()->map(function($value) {
             return $value->id;
         });
-//        var_dump($buildings);exit;
-        return $query->whereIn('building_id', $buildings);
-    }
-    public function scopeIsVenue($query){
-        return $query->where('asset_type_id','=',5);
+        return $query->whereIn('business_unit_id', $business_unit_ids);
     }
 }

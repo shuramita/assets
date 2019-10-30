@@ -16,7 +16,7 @@ class CreateAssAssetsTable extends Migration
     {
         if(!Schema::hasTable(config('asset.schema_prefix').'assets')){
             Schema::create(config('asset.schema_prefix').'assets', function (Blueprint $table) {
-                $status_enum = collect(Helper::getJsonFromStaticData('asset-status.json'))->map(function($item, $key) {
+                $status_enum = Helper::collect('asset-status.json')->map(function($item, $key) {
                     return $item->id;
                 });
                 $table->increments('id');
@@ -26,17 +26,14 @@ class CreateAssAssetsTable extends Migration
                 $table->enum('status',$status_enum->all())->default('draft');
                 $table->string('slug',250);
                 $table->integer('category_id')->nullable();
+                $table->integer('business_unit_id')->nullable();
                 $table->integer('building_id')->nullable();
+                $table->integer('floor_id')->nullable();
                 $table->integer('asset_type_id')->nullable();
                 $table->string('description',1000)->nullable();
-                $table->integer('cover_photo')->nullable();
-                $table->integer('floor_id')->nullable();
-                $table->integer('tax_id')->nullable();
-                $table->integer('parent_asset_id')->nullable();
-                $table->integer('floor_photo')->nullable()->comment('This photo will overwrite default floor photo');
-                $table->text('floor_polygon',1000)->nullable();
+                $table->string('cover_photo')->nullable();
+                $table->string('floor_photo')->nullable()->comment('This photo will overwrite default floor photo');
                 $table->integer('created_by');
-//                $table->text('photos')->nullable();
                 $table->timestamps();
             });
         }
