@@ -16,7 +16,7 @@ Route::prefix('api/asset')
     ->group(function () {
         Route::post('/','Asset@add')->name('user.add.asset');
         Route::post('/field','Asset@addField')->name('user.add.asset.field');
-        Route::put('/update','Asset@update')->name('user.update.asset');
+        Route::put('/','Asset@update')->name('user.update.asset');
         Route::get('/{id}','Asset@detail')->name('user.get.asset.detail');
         Route::get('/search','Asset@search')->name('user.search.asset');
     });

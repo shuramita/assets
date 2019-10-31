@@ -37,12 +37,16 @@ class Asset extends Model
             $model->slug = Str::slug($model->name);
             $model->business_unit_id = Auth::getBusinessUnit()->id;
             $model->code = $model->code ?? 0;
-            $model->created_by = auth()->id() ?? 0;
-
+            $model->created_by = auth()->id();
+        });
+        static::created(function ($model) {
+            $model->code = $model->code === 0 ? 'A-' . Str::upper(Str::random(5)) . '-' . $model->id : $model->code;
+            $model->save();
         });
         static::updating(function ($model) {
             $model->slug = Str::slug($model->name);
         });
+
     }
 
     public function building()
@@ -81,17 +85,6 @@ class Asset extends Model
     {
 
         $asset = Asset::create($data);
-//        $asset->name = $data['name'];
-//        $asset->status = $data['status'] ?? 'draft';
-//        $asset->category_id = $data['category_id'] ?? 0;
-//        $asset->description = $data['description'];
-//        $asset->code = $data['code'] ?? 0;
-//        if (isset($data['size'])) $asset->size = $data['size'];
-//        $asset->asset_type_id = $data['asset_type_id'];
-//        $asset->cover_photo = $data['cover_photo'] ?? null;
-//        $asset->floor_photo = $data['floor_photo'] ?? null;
-//        $asset->floor_id = $data['floor_id'] ?? 0;
-
         $asset->save();
 
         return $asset;
@@ -100,16 +93,6 @@ class Asset extends Model
     public static function updateAsset($data)
     {
         $asset = Asset::find($data['id'])->update($data);
-//        $asset->name = $data['name'] ?? $asset->name;
-//        $asset->category_id = $data['category_id'] ?? $asset->category_id;
-//        $asset->description = $data['description'] ?? $asset->description;
-//        $asset->code = $data['code'] ?? $asset->code;
-//        $asset->size = $data['size'] ?? $asset->size;
-//        $asset->cover_photo = $data['cover_photo'] ?? $asset->cover_photo;
-//        $asset->floor_photo = $data['floor_photo'] ?? $asset->floor_photo;
-//        $asset->status = $data['status'] ?? $asset->status;
-//        $asset->update();
-
         return $asset;
     }
 

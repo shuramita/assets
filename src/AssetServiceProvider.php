@@ -1,7 +1,7 @@
 <?php
 namespace Shura\Asset;
 
-use Core\Organization\Helpers\Helper as Helper;
+use Shura\Asset\Helpers\Helper;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Event;
@@ -60,6 +60,7 @@ class AssetServiceProvider extends ServiceProvider
 
         Event::listen('App\Services\SystemInfoManager::info', function ($info) {
             $info->asset_types = $info->asset_types ?? AssetType::all();
+            $info->price_options = Helper::collect('price_option.json');
         });
     }
 
