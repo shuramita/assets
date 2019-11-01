@@ -1,9 +1,12 @@
 <?php
+
+use Illuminate\Support\Facades\Route;
+
 Route::prefix('api/asset')
     ->middleware(['auth:api','cors','ass_check'])
     ->namespace('Shura\Asset\Controllers\API')
     ->group(function () {
-        Route::get('/system-info','Asset@info')->name('user.get.asset.system-info');
+        Route::get('/system-info','AssetController@info')->name('user.get.asset.system-info');
     });
 Route::prefix('api/asset/system')
     ->namespace('Shura\Asset\Controllers\API')
@@ -14,18 +17,18 @@ Route::prefix('api/asset')
     ->middleware(['auth:api','cors','org_check:api,organization,business-unit'])
     ->namespace('Shura\Asset\Controllers\API')
     ->group(function () {
-        Route::post('/','Asset@add')->name('user.add.asset');
-        Route::post('/field','Asset@addField')->name('user.add.asset.field');
-        Route::put('/','Asset@update')->name('user.update.asset');
-        Route::get('/{id}','Asset@detail')->name('user.get.asset.detail');
-        Route::get('/search','Asset@search')->name('user.search.asset');
+        Route::post('/','AssetController@add')->name('user.add.asset');
+        Route::post('/field','AssetController@addField')->name('user.add.asset.field');
+        Route::put('/','AssetController@update')->name('user.update.asset');
+        Route::get('/{id}','AssetController@detail')->name('user.get.asset.detail')->where('id', '[0-9]+');
+        Route::get('/search','AssetController@search')->name('user.search.asset');
     });
 Route::prefix('api/asset/public')
     ->middleware(['cors'])
     ->namespace('Shura\Asset\Controllers\API')
     ->group(function () {
-        Route::get('/search/','Asset@searchMarketPlace')->name('user.search.asset.public');
-        Route::get('/info/{id}','Asset@detailForMarket')->name('user.get.asset.detail.public');
+        Route::get('/search/','AssetController@searchMarketPlace')->name('user.search.asset.public');
+        Route::get('/info/{id}','AssetController@detailForMarket')->name('user.get.asset.detail.public');
     });
 Route::prefix('api/asset/price')
     ->middleware(['auth:api','cors','ass_check:api,organization,building'])
