@@ -1,7 +1,37 @@
 [
-  {"name":"Push Cart","slug":"push-cart","system_id":"push-cart","description":"Push Cart"},
-  {"name":"Atrium Space","slug":"atrium-space","system_id":"atrium-space","description":"Atrium Space"},
-  {"name":"Meting Room","slug":"metting-room","system_id":"metting-room","description":"Meting Room"},
-  {"name":"Theater","slug":"theater","system_id":"theater","description":"Theater"},
-  {"name":"Venue","slug":"venue","system_id":"venue","description":"Venue"}
+  {
+    "name": "Push Cart",
+    "slug": "push-cart",
+    "system_id": "push-cart",
+    "category": "Real Estate",
+    "description": "Push Cart"
+  },
+  {
+    "name": "Atrium Space",
+    "slug": "atrium-space",
+    "system_id": "atrium-space",
+    "category": "Real Estate",
+    "description": "Atrium Space"
+  },
+  {
+    "name": "Meting Room",
+    "slug": "meting-room",
+    "system_id": "meting-room",
+    "category": "Real Estate",
+    "description": "Meting Room"
+  },
+  {
+    "name": "Theater",
+    "slug": "theater",
+    "system_id": "theater",
+    "category": "Real Estate",
+    "description": "Theater"
+  },
+  {
+    "name": "Venue",
+    "slug": "venue",
+    "system_id": "venue",
+    "category": "Real Estate",
+    "description": "Venue"
+  }
 ]

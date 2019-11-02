@@ -6,7 +6,7 @@ use Core\Organization\Facades\Auth;
 use Illuminate\Http\Request;
 use Shura\Asset\Controllers\Controller;
 use Shura\Asset\Helpers\Helper;
-use Shura\Asset\Models\Asset as AssetModel;
+use Shura\Asset\Models\Asset;
 use Shura\Asset\Requests\AssetDetailRequest;
 use Shura\Asset\Requests\CreateAssetRequest;
 use Shura\Asset\Requests\UpdateAssetRequest;
@@ -30,9 +30,10 @@ class AssetController extends Controller
      */
     public function add(CreateAssetRequest $request)
     {
-        $asset = AssetModel::addNewAsset($request->validated());
+        $asset = Asset::addNewAsset($request->validated());
         return $this->jsonResponse($asset);
     }
+
     /**
      * Update asset
      * User can update asset
@@ -42,9 +43,10 @@ class AssetController extends Controller
      */
     public function update(UpdateAssetRequest $request)
     {
-        $asset = AssetModel::updateAsset($request->all());
+        $asset = Asset::updateAsset($request->all());
         return $this->jsonResponse($asset);
     }
+
     /**
      * Get Asset Detail
      * User can get asset detail
@@ -53,9 +55,10 @@ class AssetController extends Controller
      */
     public function detail(AssetDetailRequest $request, $id)
     {
-        $asset = AssetModel::with(['floor','building','type','prices','owner'])->find($id);
+        $asset = Asset::with(['floor', 'building', 'type', 'prices', 'owner'])->find($id);
         return $this->jsonResponse($asset);
     }
+
     /**
      * Search Assets
      * User can get asset detail
@@ -65,27 +68,9 @@ class AssetController extends Controller
     public function search(Request $request)
     {
         return $this->jsonResponse(
-            AssetModel::inWorkingBuilding()
-                ->inMyOrganization()
-                ->isVenue()
-                ->with(['building', 'cover', 'background', 'prices'])
+            Asset::query()
+                ->with(['building', 'prices'])
                 ->paginate($request->per_page ?? 15));
     }
 
-    public function addField(Request $request)
-    {
-        $data = $request->all();
-        $data['model'] = 'asset';
-        $validator = Validator::make($data, [
-            'key' => 'required',
-            'type' => 'required|in:number,string,text',
-            'model' => 'required',
-            'title' => 'required'
-        ]);
-        if ($validator->fails()) {
-            return $this->validationError($validator->errors()->getMessages(), 422);
-        }
-
-        return $this->jsonResponse(Field::addNewField($data));
-    }
 }
