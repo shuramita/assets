@@ -56,25 +56,16 @@ Route::prefix('asset')
     ->middleware(['web'])
     ->namespace('Shura\Asset\Controllers')
     ->group(function () {
-        Route::any('venue', function(){
-            return view('Asset::index');
-        })->name('asset.angular.market.place');
-        Route::get('/venue/bookings',function(){
-            return view('Asset::index');
-        })->name('backoffice_booking_venue_orders_list')->middleware('auth');
         Route::any('{all?}', function($slug = null){
             return view('Asset::index');
-        })->where(['all' => '.*'])->name('asset.angular.index');
+        })->where(['all' => '.*'])->name('asset.index');
     });
+
 Route::prefix('asset/setting')
     ->middleware(['web'])
     ->namespace('Shura\Asset\Controllers')
     ->group(function () {
-
-        Route::any('organization', function(){
-            return view('Asset::index');
-        })->name('asset.angular.setting.organization');
         Route::any('{all?}', function($slug = null){
             return view('Asset::index');
-        })->where(['all' => '.*'])->name('asset.angular.setting');
+        })->where(['all' => '.*'])->name('asset.setting');
     });

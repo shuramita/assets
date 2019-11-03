@@ -79,12 +79,12 @@ class AssetServiceProvider extends ServiceProvider
 //                'asset', new Item('Asset Manager','asset','admin','fa-newspaper')
 //            );
             app('BackOfficeNavigator')->registerNavigator(
-                'asset', new Item('Asset Manager','asset.angular.index',['admin'],['type'=>'svg','file'=>'vendor.asset.invoice-dark'])
+                'asset', new Item('Asset Manager','asset.index',['admin'],['type'=>'svg','file'=>'vendor.asset.layers-24px'])
             );
 
-//            app('BackOfficeNavigator')->registerNavigator(
-//                'setting', new Item('Asset Setting','asset.angular.setting.organization',['admin','uoa'],['type'=>'svg','file'=>'setting'])
-//            );
+            app('BackOfficeNavigator')->registerNavigator(
+                'setting', new Item('Asset Setting','asset.setting',['admin'],['type'=>'svg','file'=>'vendor.asset.nav-icon'])
+            );
             /**
              * // example for register sub Nav
              * app('AdminNavigator')->registerSubNavigator(
