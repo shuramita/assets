@@ -1,5 +1,5 @@
 {
   "type": ["normal","peak","off-peak"],
-  "unit": [ "hourly", "daily", "nightly", "weekly", "monthly", "quarterly", "yearly"],
+  "unit": ["hourly", "daily", "nightly", "weekly", "monthly", "quarterly", "yearly"],
   "available_at": ["all", "hourInDay", "dateInWeek", "dateInYear","monthInYear", "customDate" ,"customMonth"]
 }
