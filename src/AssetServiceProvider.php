@@ -1,4 +1,5 @@
 <?php
+
 namespace Shura\Asset;
 
 use Shura\Asset\Helpers\Helper;
@@ -11,6 +12,7 @@ use Shura\Asset\Commands\Install;
 use Shura\Asset\Commands\Reset;
 use Shura\Asset\Commands\Uninstall;
 use Shura\Asset\Models\AssetType;
+use Shura\BackOffice\Facades\Navigator;
 use Shura\BackOffice\ViewComposers\Item;
 use Shura\Asset\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -21,28 +23,28 @@ class AssetServiceProvider extends ServiceProvider
 
     public function boot(Router $router)
     {
-        $this->loadRoutesFrom(__DIR__.'/routes.php');
-        $this->loadViewsFrom(__DIR__.'/resources/views', $this->namespace);
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        $this->loadTranslationsFrom(__DIR__.'/translations', $this->namespace);
-        $this->loadJSONTranslationsFrom(__DIR__.'/translations');
+        $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', $this->namespace);
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadTranslationsFrom(__DIR__ . '/translations', $this->namespace);
+        $this->loadJSONTranslationsFrom(__DIR__ . '/translations');
         AliasLoader::getInstance()->alias('AssetHelper', 'Shura\Asset\Helpers\Helper');
         $router->aliasMiddleware('asset', 'Shura\Asset\Middleware\Asset');
         $router->aliasMiddleware('ass_check', 'Shura\Asset\Middleware\CheckEnviroment');
         $this->publishes([
-            __DIR__.'/config/asset.php' => config_path('asset.php'),
+            __DIR__ . '/config/asset.php' => config_path('asset.php'),
         ]);
         if ($this->app->runningInConsole()) {
-            $this->app->make(EloquentFactory::class)->load(__DIR__.'/database/factories');
+            $this->app->make(EloquentFactory::class)->load(__DIR__ . '/database/factories');
             $this->commands([
                 Uninstall::class,
                 Install::class,
                 Reset::class
             ]);
-            
+
         }
         $this->publishes([
-            __DIR__.'/assets/public' => public_path('packages/asset'),
+            __DIR__ . '/assets/public' => public_path('packages/asset'),
         ], 'public');
         $this->registerAdminNavigator();
 
@@ -56,7 +58,7 @@ class AssetServiceProvider extends ServiceProvider
             'type' => 'Shura\Asset\Models\VenueType',
             'amenity' => 'Shura\Asset\Models\Amenity',
             'event' => 'Shura\Asset\Models\EventType',
-        ],false);
+        ], false);
 
         Event::listen('App\Services\SystemInfoManager::info', function ($info) {
             $info->asset_types = $info->asset_types ?? AssetType::all();
@@ -71,26 +73,32 @@ class AssetServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/config/asset.php', 'asset');
+        $this->mergeConfigFrom(__DIR__ . '/config/asset.php', 'asset');
 
     }
-    public function registerAdminNavigator(){
-//            app('AdminNavigator')->registerNavigator(
-//                'asset', new Item('Asset Manager','asset','admin','fa-newspaper')
-//            );
-            app('BackOfficeNavigator')->registerNavigator(
-                'asset', new Item('Asset Manager','asset.index',['admin'],['type'=>'svg','mdi'=>'layers','file'=>'vendor.asset.layers-24px'])
-            );
 
-            app('BackOfficeNavigator')->registerNavigator(
-                'setting', new Item('Asset Setting','asset.setting',['admin'],['type'=>'svg','mdi'=>'settings','file'=>'vendor.asset.nav-icon'])
-            );
-            /**
-             * // example for register sub Nav
-             * app('AdminNavigator')->registerSubNavigator(
-             *    'asset', new Item('Assets','admin_list_assets','admin','fa-hotel')
-             * );
-             */
+    public function registerAdminNavigator()
+    {
+        Navigator::registerNavigator(
+            'asset', new Item('Asset Manager', 'asset.index', ['admin'], ['type' => 'svg', 'mdi' => 'layers', 'file' => 'vendor.asset.layers-24px'])
+        );
+
+        Navigator::registerSubNavigator(
+            'asset', new Item('Items', 'asset.index',
+                ['admin'],
+                ['type' => 'svg', 'mdi' => 'layers', 'file' => 'vendor.asset.layers-24px'],
+                ['all'=>'items'])
+        );
+
+        Navigator::registerSubNavigator(
+            'asset', new Item('Setting', 'asset.setting', ['admin'], ['type' => 'svg', 'mdi' => 'settings', 'file' => 'vendor.asset.nav-icon'])
+        );
+        /**
+         * // example for register sub Nav
+         * app('AdminNavigator')->registerSubNavigator(
+         *    'asset', new Item('Assets','admin_list_assets','admin','fa-hotel')
+         * );
+         */
 
     }
 

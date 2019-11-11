@@ -57,7 +57,7 @@ Route::prefix('asset')
     ->namespace('Shura\Asset\Controllers')
     ->group(function () {
         Route::any('{all?}', function($slug = null){
-            return view('Asset::index');
+            return view('Asset::index-spa');
         })->where(['all' => '.*'])->name('asset.index');
     });
 
@@ -66,6 +66,6 @@ Route::prefix('asset/setting')
     ->namespace('Shura\Asset\Controllers')
     ->group(function () {
         Route::any('{all?}', function($slug = null){
-            return view('Asset::index');
+            return view('Asset::index-spa');
         })->where(['all' => '.*'])->name('asset.setting');
     });
