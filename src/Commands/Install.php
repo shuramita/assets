@@ -50,6 +50,7 @@ class Install extends Command
         Artisan::call("db:seed",['--class'=>\Shura\Asset\Database\Seeds\AssetTypeSeeder::class]);
         $this->info('Run db sheed for \Shura\Asset\Database\Seeds\StaticDataSeeder');
         Artisan::call("db:seed",['--class'=>\Shura\Asset\Database\Seeds\StaticDataSeeder::class]);
-
+        $this->info('Run permission seeder');
+        Artisan::call("db:seed",['--class'=>\Shura\Asset\Database\Seeds\PermissionsSeeder::class]);
     }
 }

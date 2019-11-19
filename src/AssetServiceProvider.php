@@ -80,18 +80,18 @@ class AssetServiceProvider extends ServiceProvider
     public function registerAdminNavigator()
     {
         Navigator::registerNavigator(
-            'asset', new Item('Asset Manager', 'asset.index', ['admin'], ['type' => 'svg', 'mdi' => 'layers', 'file' => 'vendor.asset.layers-24px'])
+            'asset', new Item('Asset Manager', 'asset.index', ['admin','item::read'], ['type' => 'svg', 'mdi' => 'layers', 'file' => 'vendor.asset.layers-24px'])
         );
 
         Navigator::registerSubNavigator(
             'asset', new Item('Items', 'asset.index',
-                ['admin'],
+                ['admin','item::read'],
                 ['type' => 'svg', 'mdi' => 'layers', 'file' => 'vendor.asset.layers-24px'],
                 ['all'=>'items'])
         );
 
         Navigator::registerSubNavigator(
-            'asset', new Item('Setting', 'asset.setting', ['admin'], ['type' => 'svg', 'mdi' => 'settings', 'file' => 'vendor.asset.nav-icon'])
+            'asset', new Item('Setting', 'asset.setting', ['admin','item::setting'], ['type' => 'svg', 'mdi' => 'settings', 'file' => 'vendor.asset.nav-icon'])
         );
         /**
          * // example for register sub Nav

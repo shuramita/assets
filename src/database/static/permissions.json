@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Create new  Item ",
+    "slug": "item::create",
+    "description": "Create one or more item"
+  },{
+    "name": "Read Item ",
+    "slug": "item::read",
+    "description": "Read one or more item"
+  },
+  {
+    "name": "Update Item ",
+    "slug": "item::update",
+    "description": "update one or more item"
+  },
+  {
+    "name": "Delete Item ",
+    "slug": "item::delete",
+    "description": "Delete one or more item"
+  },
+  {
+    "name": "Setting Item ",
+    "slug": "item::setting",
+    "description": "Delete one or more item"
+  }
+]
