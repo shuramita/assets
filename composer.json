@@ -1,6 +1,6 @@
 {
     "name": "shura/asset",
-    "description": "This is an module for manage assets in an organization",
+    "description": "This is an module for manage assets in an organization include prices and asset type",
     "type": "library",
     "namespace": "Shura",
     "authors": [
