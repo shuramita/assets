@@ -65,7 +65,6 @@ class Price extends Model
         $price->range = $data['range'] ?? [];
         $price->description = $data['description'] ?? '';
         if(!empty($organization_id)) {
-            var_dump($organization_id);
             $price->organization_id = $organization_id;
         }
         $price->save();

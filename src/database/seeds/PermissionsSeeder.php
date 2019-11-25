@@ -20,6 +20,7 @@ class PermissionsSeeder extends Seeder
     public function run()
     {
         $permissions = Helper::collect('permissions.json');
+        dump('run asset Permissions seeder');
         $permissions->map(function ($perm) {
             try {
                 Artisan::call('permission:create', ["name" => $perm->name, "slug" => $perm->slug, "description" => $perm->description]);

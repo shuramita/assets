@@ -4,6 +4,7 @@ namespace Shura\Asset;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Shura\Asset\Listeners\UpdatePermissionForOrganizationOwner;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         'Shura\Asset\Events\BookingRejected' => [
             'Shura\Asset\Listener\SendBookingRejectedToTenant',
         ],
+        'Core\Organization\Events\ModuleAdded'=>[
+            UpdatePermissionForOrganizationOwner::class
+        ]
     ];
 
     /**

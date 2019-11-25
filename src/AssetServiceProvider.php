@@ -2,6 +2,7 @@
 
 namespace Shura\Asset;
 
+use Core\Organization\Models\Organization;
 use Shura\Asset\Helpers\Helper;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
@@ -12,6 +13,7 @@ use Shura\Asset\Commands\Install;
 use Shura\Asset\Commands\Reset;
 use Shura\Asset\Commands\Uninstall;
 use Shura\Asset\Models\AssetType;
+use Shura\Asset\Observers\OrganizationObserver;
 use Shura\BackOffice\Facades\Navigator;
 use Shura\BackOffice\ViewComposers\Item;
 use Shura\Asset\Models\User;
@@ -64,6 +66,8 @@ class AssetServiceProvider extends ServiceProvider
             $info->asset_types = $info->asset_types ?? AssetType::all();
             $info->price_options = Helper::collect('price_option.json');
         });
+
+        Organization::observe(OrganizationObserver::class);
     }
 
     /**
